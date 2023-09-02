@@ -1,0 +1,42 @@
+version: "3.3"
+
+services: 
+  api-aliviate:
+    restart: always 
+    build: .
+    ports:
+      - "6500:6500"
+    networks:
+      - traefik_net
+    environment:
+      - URL_PG_DATABASE_MASTER=postgres://postgresc16:as23g253gg..H3453BFJ&&....AS5g234g23DFfsdFfErg234g@postgres:5432/postgresc16?pool_max_conns=25
+    links:
+      - postgres
+  postgres:
+    container_name: postgres_db
+    restart: always
+    image: "postgres:14"
+    networks:
+      - traefik_net
+    volumes:
+      - 'postgresql_master_data:/internal/postgresql'
+    ports:
+      - "6510:5432"
+    environment:
+      - DATABASE_HOST=127.0.0.1
+      - POSTGRES_USER=postgresc16
+      - POSTGRES_PASSWORD=as23g253gg..H3453BFJ&&....AS5g234g23DFfsdFfErg234g
+      - POSTGRES_DB=postgresc16
+networks:
+  traefik_net:
+    driver: bridge
+    ipam: 
+      driver: default 
+volumes:
+  postgresql_master_data:
+
+
+
+
+
+
