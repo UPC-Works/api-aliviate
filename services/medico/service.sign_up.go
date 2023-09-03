@@ -62,6 +62,17 @@ func SignUp(c echo.Context) error {
 			Data: ""})
 	}
 
+	//Storage in the cache
+	err_set := medico_repository.Re_SetId(new_medico.Id)
+	if err_set != nil {
+		return c.JSON(500, &helpers.ResponseString{
+			Error: helpers.ErrorStructure{
+				Code:   9453,
+				Detail: err_set.Error(),
+			},
+			Data: ""})
+	}
+
 	//OK
 	return c.JSON(200, &helpers.ResponseString{
 		Error: helpers.ErrorStructure{

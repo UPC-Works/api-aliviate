@@ -4,14 +4,12 @@ import (
 	jwt "github.com/dgrijalva/jwt-go"
 )
 
-//Claim is the structure to process the JWT
+// Claim is the structure to process the JWT
 type Claim struct {
-	Id          string `json:"id"`
-	Country     int    `json:"country"`
-	Rol         int    `json:"rol"`
-	Full_name   string `json:"fullName"`
-	SessionCode int    `json:"sessioncode"`
-	Source      int    `json:"source"`
+	Id             string `json:"id"`
+	NombreCompleto string `json:"nombreCompleto"`
+	Correo         string `json:"correo"`
+	Rol            int    `json:"rol"`
 	// StandardClaims -> expiration date of the token
 	jwt.StandardClaims
 }

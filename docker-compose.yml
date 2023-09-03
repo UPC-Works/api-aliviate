@@ -27,6 +27,14 @@ services:
       - POSTGRES_USER=postgresc16
       - POSTGRES_PASSWORD=as23g253gg..H3453BFJ&&....AS5g234g23DFfsdFfErg234g
       - POSTGRES_DB=postgresc16
+  redis:
+    container_name: redis_db
+    restart: always
+    image: "redis:6.0.16"
+    networks:
+      - traefik_net
+    ports: 
+      - "6530:6379"
 networks:
   traefik_net:
     driver: bridge

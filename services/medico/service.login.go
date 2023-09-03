@@ -106,6 +106,22 @@ func Login(c echo.Context) error {
 			}})
 	}
 
+	//Storage in the cache
+	err_add_re := medico_repository.Re_SetId(medico_found.Id)
+	if err_add_re != nil {
+		return c.JSON(500, &helpers.ResponseJwt{
+			Error: helpers.ErrorStructure{
+				Code:   94510,
+				Detail: err_add_re.Error(),
+			},
+			Data: helpers.JwtStructure{
+				JWT:            "",
+				NombreCompleto: "",
+				Correo:         "",
+				Rol:            0,
+			}})
+	}
+
 	//OK
 	return c.JSON(200, &helpers.ResponseJwt{
 		Error: helpers.ErrorStructure{
