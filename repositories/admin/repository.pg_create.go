@@ -16,7 +16,7 @@ func Pg_Create(input_admin *models.Admin) error {
 
 	db := configs.Conn_Pg_DB()
 
-	query := `INSERT INTO Establecimiento (
+	query := `INSERT INTO Admin (
 		id                 ,
 		nombre_completo             .
 		correo,
