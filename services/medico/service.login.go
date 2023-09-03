@@ -91,7 +91,7 @@ func Login(c echo.Context) error {
 	}
 
 	//Generate the token
-	jwtKey, error_generatingJWT := private_services.GenerateJWT(medico_found.Id, medico_found.Nombre, medico_found.Apellido, medico_found.Correo)
+	jwtKey, error_generatingJWT := private_services.GenerateJWT(medico_found.Id, medico_found.Nombre, medico_found.Apellido, medico_found.Correo, 2)
 	if error_generatingJWT != nil {
 		return c.JSON(500, &helpers.ResponseJwt{
 			Error: helpers.ErrorStructure{
