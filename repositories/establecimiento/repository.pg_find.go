@@ -33,8 +33,10 @@ func Pg_FindMultiple(input_id string, input_limit int, input_offset int) ([]mode
 
 	//Define the query
 	q := `SELECT 
-	id                             ,
-	nombre
+	id                 ,
+	nombre             .
+	id_distrito,
+	direccion
 FROM Establecimiento `
 	if counter_filters > 0 {
 		q += " WHERE "
@@ -55,7 +57,9 @@ FROM Establecimiento `
 		var oEstablecimiento models.Establecimiento
 		rows.Scan(
 			&oEstablecimiento.Id,
-			&oEstablecimiento.Nombre)
+			&oEstablecimiento.Nombre,
+			&oEstablecimiento.IdDistrito,
+			&oEstablecimiento.Dirección)
 		oListEstablecimiento = append(oListEstablecimiento, oEstablecimiento)
 	}
 

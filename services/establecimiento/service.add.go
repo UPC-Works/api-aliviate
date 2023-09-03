@@ -36,7 +36,7 @@ func Add(c echo.Context) error {
 	}
 
 	//Storage the Establecimiento
-	new_establecimiento := models.NewEstablecimiento(uuid.New().String(), input_establecimiento.Nombre)
+	new_establecimiento := models.NewEstablecimiento(uuid.New().String(), input_establecimiento.IdDistrito, input_establecimiento.Nombre, input_establecimiento.Dirección)
 	error_create_establecimiento := establecimiento_repository.Pg_Create(new_establecimiento)
 	if error_create_establecimiento != nil {
 		return c.JSON(500, &helpers.ResponseString{

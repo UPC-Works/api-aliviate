@@ -18,11 +18,15 @@ func Pg_Create(input_establecimiento *models.Establecimiento) error {
 
 	query := `INSERT INTO Establecimiento (
 		id                 ,
-		nombre             
-	) VALUES ($1,$2)`
+		nombre             .
+		id_distrito,
+		direccion
+	) VALUES ($1,$2,$3,$4)`
 	_, err_query := db.Exec(ctx, query,
 		input_establecimiento.Id,
 		input_establecimiento.Nombre,
+		input_establecimiento.IdDistrito,
+		input_establecimiento.Dirección,
 	)
 
 	if err_query != nil {
