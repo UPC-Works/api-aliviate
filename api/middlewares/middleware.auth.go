@@ -26,7 +26,7 @@ func Auth(next echo.HandlerFunc) echo.HandlerFunc {
 			return c.JSON(403, &helpers.ResponseString{
 				Error: helpers.ErrorStructure{
 					Code:   9459,
-					Detail: "Error in the auth, details: " + error_decode.Error(),
+					Detail: "Error en la autenticacion, detalles: " + error_decode.Error(),
 				},
 				Data: ""})
 		}
@@ -34,7 +34,7 @@ func Auth(next echo.HandlerFunc) echo.HandlerFunc {
 			return c.JSON(403, &helpers.ResponseString{
 				Error: helpers.ErrorStructure{
 					Code:   9459,
-					Detail: "Error in the auth, details: This user does not exist",
+					Detail: "Error en la autenticacion, detalle: Este usuario no existe",
 				},
 				Data: ""})
 		}
