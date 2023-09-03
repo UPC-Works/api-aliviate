@@ -28,7 +28,7 @@ func CompareToken(password_found string, input_password string) error {
 
 func DecryptJWT(input_jwt string, claims *models.Claim) (*jwt.Token, error) {
 
-	tokenKey := []byte("TokenGenerasdsa$$asdas..23c1qweadorRestoner")
+	tokenKey := []byte("TokenGenerasdsa$$asdas..23c1qweadorAliviate")
 
 	token, error_parse := jwt.ParseWithClaims(input_jwt, claims, func(token *jwt.Token) (interface{}, error) {
 		return tokenKey, nil
@@ -46,14 +46,15 @@ func EncryptPassword(input_password string) (string, error) {
 	return string(bytes), err
 }
 
-func GenerateJWT(input_id string, input_nombre string, input_apellido string, input_correo string) (string, error) {
-	tokenKey := []byte("TokenGenerasdsa$$asdas..23c1qweadorRestoner")
+func GenerateJWT(input_id string, input_nombre string, input_apellido string, input_correo string, input_rol int) (string, error) {
+	tokenKey := []byte("TokenGenerasdsa$$asdas..23c1qweadorAliviate")
 
 	payload := jwt.MapClaims{
 		"id":       input_id,
 		"Nombre":   input_nombre,
 		"Apellido": input_apellido,
 		"Correo":   input_correo,
+		"Rol":      input_rol,
 		"exp":      time.Now().Add(time.Hour * 1460).Unix(),
 	}
 

@@ -7,6 +7,7 @@ import "time"
 type Consulta struct {
 	Id                            string    `json:"id"`
 	IdHistoriaClinica             string    `json:"idHistoriaClinica"`
+	IdMedico                      string    `json:"idMedico"`
 	FechaRegistro                 time.Time `json:"fechaRegistro"`
 	DescripcionEnfermedadPaciente string    `json:"descripcionEnfermedadPaciente"`
 	TiempoEnfermedad              int       `json:"tiempoEnfermedad"`
@@ -36,11 +37,12 @@ type Consulta struct {
 
 //Constructor
 
-func NewConsulta(id string, idHistoriaClinica string, descripcionEnfermedadPaciente string, tiempoEnfermedad int, apetito string, sed string, suenio string, estadoAnimo string, otroDetalle string, orina string, deposiciones string, temperatura float32, pA string, fC string, fR string, peso float32, talla float32, iMC float32, diagnostico string, tratamiento string, diagnosticoIA string, tratamientoIA string, examenesAuxiliares []string, proximaCita time.Time, atentidoPor Medico, observaciones string,
+func NewConsulta(id string, idHistoriaClinica string, idMedico string, descripcionEnfermedadPaciente string, tiempoEnfermedad int, apetito string, sed string, suenio string, estadoAnimo string, otroDetalle string, orina string, deposiciones string, temperatura float32, pA string, fC string, fR string, peso float32, talla float32, iMC float32, diagnostico string, tratamiento string, diagnosticoIA string, tratamientoIA string, examenesAuxiliares []string, proximaCita time.Time, atentidoPor Medico, observaciones string,
 ) *Consulta {
 	return &Consulta{
 		Id:                            id,
 		IdHistoriaClinica:             idHistoriaClinica,
+		IdMedico:                      idMedico,
 		FechaRegistro:                 time.Now(),
 		DescripcionEnfermedadPaciente: descripcionEnfermedadPaciente,
 		TiempoEnfermedad:              tiempoEnfermedad,

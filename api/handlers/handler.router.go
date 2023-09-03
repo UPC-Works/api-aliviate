@@ -10,6 +10,7 @@ import (
 	"github.com/rs/cors"
 
 	middleware_api "github.com/UPC-Works/api-aliviate/api/middlewares"
+	admin_service "github.com/UPC-Works/api-aliviate/services/admin"
 	establecimiento_service "github.com/UPC-Works/api-aliviate/services/establecimiento"
 	historia_clinica_service "github.com/UPC-Works/api-aliviate/services/historia_clinica"
 	medico_service "github.com/UPC-Works/api-aliviate/services/medico"
@@ -26,6 +27,11 @@ func HandlerRouters() {
 
 	//V1
 	version_1 := e.Group("/v1")
+
+	//V1 - ADMIN
+	router_admin := version_1.Group("/admin")
+	router_admin.POST("/sign-up", admin_service.SignUp)
+	router_admin.POST("/login", admin_service.Login)
 
 	//V1 - ESTABLECIMIENTO
 	router_establecimiento := version_1.Group("/establecimiento", middleware_api.Auth)
