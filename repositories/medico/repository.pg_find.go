@@ -19,7 +19,7 @@ func Pg_FindOne(input_email string) (models.Medico, error) {
 	filters := map[string]interface{}{}
 	counter_filters := 0
 	if input_email != "" {
-		filters["email"] = input_email
+		filters["correo"] = input_email
 		counter_filters += 1
 	}
 
