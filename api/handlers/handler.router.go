@@ -48,8 +48,7 @@ func HandlerRouters() {
 	router_provider.DELETE("", provider_service.SendToDelete)*/
 
 	//V1 - MEDICO
-	router_medico := version_1.Group("/medico", middleware_api.Auth)
-	router_medico.POST("", medico_service.SignUp)
+	router_medico := version_1.Group("/medico")
 	router_medico.POST("/sign-up", medico_service.SignUp)
 	router_medico.POST("/login", medico_service.Login)
 	/*router_medico.GET("", measure_service.GetAll)

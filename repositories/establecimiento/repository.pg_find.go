@@ -34,7 +34,7 @@ func Pg_FindMultiple(input_id string, input_limit int, input_offset int) ([]mode
 	//Define the query
 	q := `SELECT 
 	id                 ,
-	nombre             .
+	nombre             ,
 	id_distrito,
 	direccion
 FROM Establecimiento `

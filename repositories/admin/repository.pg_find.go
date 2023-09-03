@@ -34,7 +34,7 @@ func Pg_FindOne(input_correo string) (models.Admin, error) {
 	//Define the query
 	q := `SELECT 
 	id                 ,
-	nombre_completo             .
+	nombre_completo             ,
 	correo,
 	contrasenia   
 FROM Admin `
