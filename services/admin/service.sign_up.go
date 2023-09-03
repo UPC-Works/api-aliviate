@@ -48,10 +48,10 @@ func SignUp(c echo.Context) error {
 	}
 
 	//Encrypt password
-	encrypted_pass, _ := private_services.EncryptPassword(admin_found.Contrasenia)
+	encrypted_pass, _ := private_services.EncryptPassword(input_admin.Contrasenia)
 
 	//Storage the New Admin
-	new_admin := models.NewAdmin(shortuuid.New(), admin_found.NombreCompleto, admin_found.Correo, encrypted_pass)
+	new_admin := models.NewAdmin(shortuuid.New(), input_admin.NombreCompleto, input_admin.Correo, encrypted_pass)
 	error_create_admin := admin_repository.Pg_Create(new_admin)
 	if error_create_admin != nil {
 		return c.JSON(500, &helpers.ResponseString{
