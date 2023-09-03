@@ -75,7 +75,7 @@ func Login(c echo.Context) error {
 	}
 
 	//Check the password
-	error_compareToken := private_services.CompareToken(admin_found.Contrasenia, admin_found.Contrasenia)
+	error_compareToken := private_services.CompareToken(admin_found.Contrasenia, input_admin.Contrasenia)
 	if error_compareToken != nil {
 		return c.JSON(400, &helpers.ResponseJwt{
 			Error: helpers.ErrorStructure{
