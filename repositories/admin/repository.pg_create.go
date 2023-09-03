@@ -18,7 +18,7 @@ func Pg_Create(input_admin *models.Admin) error {
 
 	query := `INSERT INTO Admin (
 		id                 ,
-		nombre_completo             .
+		nombre_completo            ,
 		correo,
 		contrasenia
 	) VALUES ($1,$2,$3,$4)`
