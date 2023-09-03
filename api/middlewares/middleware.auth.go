@@ -14,7 +14,7 @@ func Auth(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 
 		//Sending the request
-		resquest_http, _ := http.NewRequest("GET", "https://business-register-authentication.api-restoner.link/v1/auth", nil)
+		resquest_http, _ := http.NewRequest("GET", "http://localhost:6500/v1/auth", nil)
 		resquest_http.Header.Add("auth-token", c.Request().Header.Get("auth-token"))
 		client := &http.Client{}
 		response_http, _ := client.Do(resquest_http)
@@ -41,9 +41,9 @@ func Auth(next echo.HandlerFunc) echo.HandlerFunc {
 
 		//Assigning the values
 		c.Set("id", response_auth.Data.Id)
-		c.Set("nombre", response_auth.Data.Nombre)
-		c.Set("apellido", response_auth.Data.Apellido)
+		c.Set("nombreCompleto", response_auth.Data.NombreCompleto)
 		c.Set("correo", response_auth.Data.Correo)
+		c.Set("rol", response_auth.Data.Rol)
 
 		//OK
 		return next(c)

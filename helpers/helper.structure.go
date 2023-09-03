@@ -6,15 +6,15 @@ type ErrorStructure struct {
 }
 
 type JwtStructure struct {
-	JWT      string `json:"jwt"`
-	Nombre   string `json:"nombre"`
-	Apellido string `json:"apellido"`
-	Correo   string `json:"correo"`
+	JWT            string `json:"jwt"`
+	NombreCompleto string `json:"nombreCompleto"`
+	Correo         string `json:"correo"`
+	Rol            int    `json:"rol"`
 }
 
 type AuthStructure struct {
-	Id       string `json:"id"`
-	Nombre   string `json:"nombre"`
-	Apellido string `json:"apellido"`
-	Correo   string `json:"correo"`
+	Id             string `json:"id"`
+	NombreCompleto string `json:"nombreCompleto"`
+	Correo         string `json:"correo"`
+	Rol            int    `json:"rol"`
 }

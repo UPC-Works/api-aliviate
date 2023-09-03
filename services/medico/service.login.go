@@ -23,10 +23,10 @@ func Login(c echo.Context) error {
 				Detail: "Revisa la estructura o el tipo del valor",
 			},
 			Data: helpers.JwtStructure{
-				JWT:      "",
-				Nombre:   "",
-				Apellido: "",
-				Correo:   "",
+				JWT:            "",
+				NombreCompleto: "",
+				Correo:         "",
+				Rol:            0,
 			}})
 	}
 
@@ -38,10 +38,10 @@ func Login(c echo.Context) error {
 				Detail: "El Correo no puede exceder la longitud de 50 y la Contraseña debe estar entre 8-12 caracteres",
 			},
 			Data: helpers.JwtStructure{
-				JWT:      "",
-				Nombre:   "",
-				Apellido: "",
-				Correo:   "",
+				JWT:            "",
+				NombreCompleto: "",
+				Correo:         "",
+				Rol:            0,
 			}})
 	}
 
@@ -54,10 +54,10 @@ func Login(c echo.Context) error {
 				Detail: error_findbyemail.Error(),
 			},
 			Data: helpers.JwtStructure{
-				JWT:      "",
-				Nombre:   "",
-				Apellido: "",
-				Correo:   "",
+				JWT:            "",
+				NombreCompleto: "",
+				Correo:         "",
+				Rol:            0,
 			}})
 	}
 	if medico_found.Correo == "" {
@@ -67,10 +67,10 @@ func Login(c echo.Context) error {
 				Detail: "Medico no encontrado",
 			},
 			Data: helpers.JwtStructure{
-				JWT:      "",
-				Nombre:   "",
-				Apellido: "",
-				Correo:   "",
+				JWT:            "",
+				NombreCompleto: "",
+				Correo:         "",
+				Rol:            0,
 			}})
 	}
 
@@ -83,10 +83,10 @@ func Login(c echo.Context) error {
 				Detail: "Contraseña incorrecta, detalle:" + error_compareToken.Error(),
 			},
 			Data: helpers.JwtStructure{
-				JWT:      "",
-				Nombre:   "",
-				Apellido: "",
-				Correo:   "",
+				JWT:            "",
+				NombreCompleto: "",
+				Correo:         "",
+				Rol:            0,
 			}})
 	}
 
@@ -99,10 +99,10 @@ func Login(c echo.Context) error {
 				Detail: "Error when trying to generate the token, detail:" + error_generatingJWT.Error(),
 			},
 			Data: helpers.JwtStructure{
-				JWT:      "",
-				Nombre:   "",
-				Apellido: "",
-				Correo:   "",
+				JWT:            "",
+				NombreCompleto: "",
+				Correo:         "",
+				Rol:            0,
 			}})
 	}
 
@@ -113,10 +113,10 @@ func Login(c echo.Context) error {
 			Detail: "",
 		},
 		Data: helpers.JwtStructure{
-			JWT:      jwtKey,
-			Nombre:   medico_found.Nombre,
-			Apellido: medico_found.Apellido,
-			Correo:   medico_found.Correo,
+			JWT:            jwtKey,
+			NombreCompleto: medico_found.Nombre,
+			Correo:         medico_found.Correo,
+			Rol:            2,
 		}})
 
 }
