@@ -27,7 +27,7 @@ func Pg_Create(input_medico *models.Medico) error {
 		direccion          ,
 		fecha_registro     ,
 		especialidad
-	) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`
+	) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`
 	_, err_query := db.Exec(ctx, query,
 		input_medico.Id,
 		input_medico.Nombre,
