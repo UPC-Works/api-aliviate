@@ -6,7 +6,6 @@ import "time"
 
 type Medico struct {
 	Id                 string    `json:"id"`
-	IdEstablecimiento  string    `json:"idEstablecimiento"`
 	Nombre             string    `json:"nombre"`
 	Apellido           string    `json:"apellido"`
 	Colegiatura        string    `json:"colegiatura"`
@@ -15,14 +14,14 @@ type Medico struct {
 	Contrasenia        string    `json:"contrasenia"`
 	FechaRegistro      time.Time `json:"fechaRegistro"`
 	Direccion          string    `json:"direccion"`
+	Especialidad       string    `json:"especialidad"`
 }
 
 //Constructor
 
-func NewMedico(id string, idEstablecimiento string, nombre string, apellido string, colegiatura string, documentoIdentidad int, correo string, contrasenia string, direccion string) *Medico {
+func NewMedico(id string, nombre string, apellido string, colegiatura string, documentoIdentidad int, correo string, contrasenia string, direccion string, especialidad string) *Medico {
 	return &Medico{
 		Id:                 id,
-		IdEstablecimiento:  idEstablecimiento,
 		Nombre:             nombre,
 		Apellido:           apellido,
 		Colegiatura:        colegiatura,
@@ -31,5 +30,6 @@ func NewMedico(id string, idEstablecimiento string, nombre string, apellido stri
 		Contrasenia:        contrasenia,
 		FechaRegistro:      time.Now(),
 		Direccion:          direccion,
+		Especialidad:       especialidad,
 	}
 }

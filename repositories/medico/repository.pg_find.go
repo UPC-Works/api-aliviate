@@ -34,7 +34,6 @@ func Pg_FindOne(input_email string) (models.Medico, error) {
 	//Define the query
 	q := `SELECT 
 	id                 ,
-		id_establecimiento ,
 		nombre             ,
 		apellido           ,
 		colegiatura        ,
@@ -42,7 +41,8 @@ func Pg_FindOne(input_email string) (models.Medico, error) {
 		correo             ,
 		contrasenia        ,
 		direccion          ,
-		fecha_registro     
+		fecha_registro     ,
+		especialidad
 FROM Medico `
 	if counter_filters > 0 {
 		q += " WHERE "
@@ -56,7 +56,6 @@ FROM Medico `
 
 	error_find := db.QueryRow(ctx, q).Scan(
 		&oMedico.Id,
-		&oMedico.IdEstablecimiento,
 		&oMedico.Nombre,
 		&oMedico.Apellido,
 		&oMedico.Colegiatura,
@@ -64,7 +63,8 @@ FROM Medico `
 		&oMedico.Correo,
 		&oMedico.Contrasenia,
 		&oMedico.FechaRegistro,
-		&oMedico.Direccion)
+		&oMedico.Direccion,
+		&oMedico.Especialidad)
 
 	if error_find != nil {
 		return oMedico, error_find
@@ -128,7 +128,6 @@ FROM Medico `
 		var oMedico models.Medico
 		rows.Scan(
 			&oMedico.Id,
-			&oMedico.IdEstablecimiento,
 			&oMedico.Nombre,
 			&oMedico.Apellido,
 			&oMedico.Colegiatura,
@@ -136,7 +135,8 @@ FROM Medico `
 			&oMedico.Correo,
 			&oMedico.Contrasenia,
 			&oMedico.FechaRegistro,
-			&oMedico.Direccion)
+			&oMedico.Direccion,
+			&oMedico.Especialidad)
 		oListMedico = append(oListMedico, oMedico)
 	}
 

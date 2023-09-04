@@ -37,6 +37,7 @@ func HandlerRouters() {
 	router_admin := version_1.Group("/admin")
 	router_admin.POST("/sign-up", admin_service.SignUp)
 	router_admin.POST("/login", admin_service.Login)
+	router_admin.POST("/assign-est-medico", admin_service.AsignarEstablecimiento)
 
 	//V1 - ESTABLECIMIENTO
 	router_establecimiento := version_1.Group("/establecimiento", middleware_api.Auth)

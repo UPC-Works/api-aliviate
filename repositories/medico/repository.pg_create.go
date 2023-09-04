@@ -18,7 +18,6 @@ func Pg_Create(input_medico *models.Medico) error {
 
 	query := `INSERT INTO Medico (
 		id                 ,
-		id_establecimiento ,
 		nombre             ,
 		apellido           ,
 		colegiatura        ,
@@ -26,11 +25,11 @@ func Pg_Create(input_medico *models.Medico) error {
 		correo             ,
 		contrasenia        ,
 		direccion          ,
-		fecha_registro     
+		fecha_registro     ,
+		especialidad
 	) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`
 	_, err_query := db.Exec(ctx, query,
 		input_medico.Id,
-		input_medico.IdEstablecimiento,
 		input_medico.Nombre,
 		input_medico.Apellido,
 		input_medico.Colegiatura,
