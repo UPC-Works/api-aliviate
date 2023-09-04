@@ -34,8 +34,8 @@ func Pg_Create(input_medico *models.Medico) error {
 		input_medico.Colegiatura,
 		input_medico.Correo,
 		input_medico.Contrasenia,
-		input_medico.FechaRegistro,
 		input_medico.Direccion,
+		input_medico.FechaRegistro,
 		input_medico.Especialidad,
 	)
 
