@@ -36,6 +36,7 @@ func Pg_Create(input_medico *models.Medico) error {
 		input_medico.Contrasenia,
 		input_medico.FechaRegistro,
 		input_medico.Direccion,
+		input_medico.Especialidad,
 	)
 
 	if err_query != nil {
