@@ -23,8 +23,8 @@ func Authentication(c echo.Context) error {
 	if err != nil {
 		return c.JSON(400, &helpers.ResponseString{
 			Error: helpers.ErrorStructure{
-				Code:   9451,
-				Detail: "Revisa la estructura o el tipo del valor, detalles: " + err.Error(),
+				HasError: true,
+				Detail:   "Revisa la estructura o el tipo del valor, detalles: " + err.Error(),
 			},
 			Data: ""})
 	}
@@ -34,8 +34,8 @@ func Authentication(c echo.Context) error {
 	if error_decrypt != nil {
 		return c.JSON(500, &helpers.ResponseAuth{
 			Error: helpers.ErrorStructure{
-				Code:   94510,
-				Detail: "Error al desencriptar token,detalle:" + error_decrypt.Error(),
+				HasError: true,
+				Detail:   "Error al desencriptar token,detalle:" + error_decrypt.Error(),
 			},
 			Data: helpers.AuthStructure{
 				Id:             claims.Id,
@@ -47,8 +47,8 @@ func Authentication(c echo.Context) error {
 	if !token.Valid {
 		return c.JSON(400, &helpers.ResponseAuth{
 			Error: helpers.ErrorStructure{
-				Code:   9451,
-				Detail: "Token invalido",
+				HasError: true,
+				Detail:   "Token invalido",
 			},
 			Data: helpers.AuthStructure{
 				Id:             claims.Id,
@@ -66,8 +66,8 @@ func Authentication(c echo.Context) error {
 		if id_admin == "" {
 			return c.JSON(403, &helpers.ResponseAuth{
 				Error: helpers.ErrorStructure{
-					Code:   9459,
-					Detail: "Restart your session",
+					HasError: true,
+					Detail:   "Restart your session",
 				},
 				Data: helpers.AuthStructure{
 					Id:             claims.Id,
@@ -83,8 +83,8 @@ func Authentication(c echo.Context) error {
 			if error_find_admin != nil {
 				return c.JSON(500, &helpers.ResponseAuth{
 					Error: helpers.ErrorStructure{
-						Code:   9457,
-						Detail: error_find_admin.Error(),
+						HasError: true,
+						Detail:   error_find_admin.Error(),
 					},
 					Data: helpers.AuthStructure{
 						Id:             claims.Id,
@@ -98,8 +98,8 @@ func Authentication(c echo.Context) error {
 			if err_add_re != nil {
 				return c.JSON(500, &helpers.ResponseAuth{
 					Error: helpers.ErrorStructure{
-						Code:   9453,
-						Detail: err_add_re.Error(),
+						HasError: true,
+						Detail:   err_add_re.Error(),
 					},
 					Data: helpers.AuthStructure{
 						Id:             claims.Id,
@@ -111,8 +111,8 @@ func Authentication(c echo.Context) error {
 			//Return the error
 			return c.JSON(500, &helpers.ResponseAuth{
 				Error: helpers.ErrorStructure{
-					Code:   9453,
-					Detail: error_get_re.Error(),
+					HasError: true,
+					Detail:   error_get_re.Error(),
 				},
 				Data: helpers.AuthStructure{
 					Id:             claims.Id,
@@ -128,8 +128,8 @@ func Authentication(c echo.Context) error {
 		if id_medico == "" {
 			return c.JSON(403, &helpers.ResponseAuth{
 				Error: helpers.ErrorStructure{
-					Code:   9459,
-					Detail: "Restablece tu sesion",
+					HasError: true,
+					Detail:   "Restablece tu sesion",
 				},
 				Data: helpers.AuthStructure{
 					Id:             claims.Id,
@@ -145,8 +145,8 @@ func Authentication(c echo.Context) error {
 			if error_find_medico != nil {
 				return c.JSON(500, &helpers.ResponseAuth{
 					Error: helpers.ErrorStructure{
-						Code:   9457,
-						Detail: error_find_medico.Error(),
+						HasError: true,
+						Detail:   error_find_medico.Error(),
 					},
 					Data: helpers.AuthStructure{
 						Id:             claims.Id,
@@ -160,8 +160,8 @@ func Authentication(c echo.Context) error {
 			if err_add_re != nil {
 				return c.JSON(500, &helpers.ResponseAuth{
 					Error: helpers.ErrorStructure{
-						Code:   9453,
-						Detail: err_add_re.Error(),
+						HasError: true,
+						Detail:   err_add_re.Error(),
 					},
 					Data: helpers.AuthStructure{
 						Id:             claims.Id,
@@ -173,8 +173,8 @@ func Authentication(c echo.Context) error {
 			//Return the error
 			return c.JSON(500, &helpers.ResponseAuth{
 				Error: helpers.ErrorStructure{
-					Code:   9453,
-					Detail: error_get_re.Error(),
+					HasError: true,
+					Detail:   error_get_re.Error(),
 				},
 				Data: helpers.AuthStructure{
 					Id:             claims.Id,
@@ -188,8 +188,8 @@ func Authentication(c echo.Context) error {
 	//OK
 	return c.JSON(200, &helpers.ResponseAuth{
 		Error: helpers.ErrorStructure{
-			Code:   0,
-			Detail: "",
+			HasError: false,
+			Detail:   "",
 		},
 		Data: helpers.AuthStructure{
 			Id:             claims.Id,

@@ -19,8 +19,8 @@ func Add(c echo.Context) error {
 	if err != nil {
 		return c.JSON(400, &helpers.ResponseString{
 			Error: helpers.ErrorStructure{
-				Code:   9451,
-				Detail: "Revisa la estructura o el tipo del valor",
+				HasError: true,
+				Detail:   "Revisa la estructura o el tipo del valor",
 			},
 			Data: ""})
 	}
@@ -29,8 +29,8 @@ func Add(c echo.Context) error {
 	if len(input_paciente.Nombre) < 1 || len(input_paciente.Nombre) > 50 || len(input_paciente.Apellido) < 1 || len(input_paciente.Apellido) > 50 || input_paciente.Genero == 0 || input_paciente.DocumentoIdentidad == 0 {
 		return c.JSON(400, &helpers.ResponseString{
 			Error: helpers.ErrorStructure{
-				Code:   9452,
-				Detail: "Nombre no puede exceder la longitud de 50, Apellido no puede exceder la longitud de 50, debe indicar el Genero y el Documento de Identidad",
+				HasError: true,
+				Detail:   "Nombre no puede exceder la longitud de 50, Apellido no puede exceder la longitud de 50, debe indicar el Genero y el Documento de Identidad",
 			},
 			Data: ""})
 	}
@@ -41,8 +41,8 @@ func Add(c echo.Context) error {
 	if error_create_paciente != nil {
 		return c.JSON(500, &helpers.ResponseString{
 			Error: helpers.ErrorStructure{
-				Code:   9457,
-				Detail: error_create_paciente.Error(),
+				HasError: true,
+				Detail:   error_create_paciente.Error(),
 			},
 			Data: ""})
 	}
@@ -50,8 +50,8 @@ func Add(c echo.Context) error {
 	//OK
 	return c.JSON(200, &helpers.ResponseString{
 		Error: helpers.ErrorStructure{
-			Code:   0,
-			Detail: "",
+			HasError: false,
+			Detail:   "",
 		},
 		Data: "OK"})
 }

@@ -20,8 +20,8 @@ func SignUp(c echo.Context) error {
 	if err != nil {
 		return c.JSON(400, &helpers.ResponseString{
 			Error: helpers.ErrorStructure{
-				Code:   9451,
-				Detail: "Revisa la estructura o el tipo del valor",
+				HasError: true,
+				Detail:   "Revisa la estructura o el tipo del valor",
 			},
 			Data: ""})
 	}
@@ -30,8 +30,8 @@ func SignUp(c echo.Context) error {
 	if len(input_medico.Nombre) < 1 || len(input_medico.Nombre) > 20 || len(input_medico.Correo) < 1 || len(input_medico.Correo) > 50 || len(input_medico.Contrasenia) < 8 || len(input_medico.Contrasenia) > 12 {
 		return c.JSON(400, &helpers.ResponseString{
 			Error: helpers.ErrorStructure{
-				Code:   9452,
-				Detail: "El nombre no debe exceder la longitud de 20 caracteres, Correo no puede exceder la longitud de 50 y la Contraseña debe estar entre 8-12 caracteres",
+				HasError: true,
+				Detail:   "El nombre no debe exceder la longitud de 20 caracteres, Correo no puede exceder la longitud de 50 y la Contraseña debe estar entre 8-12 caracteres",
 			},
 			Data: ""})
 	}
@@ -41,8 +41,8 @@ func SignUp(c echo.Context) error {
 	if medico_found.Id != "" {
 		return c.JSON(403, &helpers.ResponseString{
 			Error: helpers.ErrorStructure{
-				Code:   9456,
-				Detail: "Este correo ya esta registrado",
+				HasError: true,
+				Detail:   "Este correo ya esta registrado",
 			},
 			Data: ""})
 	}
@@ -56,8 +56,8 @@ func SignUp(c echo.Context) error {
 	if error_create_medico != nil {
 		return c.JSON(500, &helpers.ResponseString{
 			Error: helpers.ErrorStructure{
-				Code:   9457,
-				Detail: error_create_medico.Error(),
+				HasError: true,
+				Detail:   error_create_medico.Error(),
 			},
 			Data: ""})
 	}
@@ -67,8 +67,8 @@ func SignUp(c echo.Context) error {
 	if err_set != nil {
 		return c.JSON(500, &helpers.ResponseString{
 			Error: helpers.ErrorStructure{
-				Code:   9453,
-				Detail: err_set.Error(),
+				HasError: true,
+				Detail:   err_set.Error(),
 			},
 			Data: ""})
 	}
@@ -76,8 +76,8 @@ func SignUp(c echo.Context) error {
 	//OK
 	return c.JSON(200, &helpers.ResponseString{
 		Error: helpers.ErrorStructure{
-			Code:   0,
-			Detail: "",
+			HasError: false,
+			Detail:   "",
 		},
 		Data: "OK"})
 }

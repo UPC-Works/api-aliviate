@@ -1,8 +1,8 @@
 package helper
 
 type ErrorStructure struct {
-	Code   int    `json:"code"`
-	Detail string `json:"detail"`
+	HasError bool   `json:"hasError"`
+	Detail   string `json:"detail"`
 }
 
 type JwtStructure struct {

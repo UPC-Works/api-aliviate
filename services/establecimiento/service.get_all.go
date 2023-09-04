@@ -15,8 +15,8 @@ func GetAll(c echo.Context) error {
 	if error_find_establecimientos != nil {
 		return c.JSON(500, &helpers.ResponseListEstablecimiento{
 			Error: helpers.ErrorStructure{
-				Code:   9457,
-				Detail: error_find_establecimientos.Error(),
+				HasError: true,
+				Detail:   error_find_establecimientos.Error(),
 			},
 			Data: []models.Establecimiento{}})
 	}
@@ -24,8 +24,8 @@ func GetAll(c echo.Context) error {
 	//OK
 	return c.JSON(200, &helpers.ResponseListEstablecimiento{
 		Error: helpers.ErrorStructure{
-			Code:   0,
-			Detail: "",
+			HasError: false,
+			Detail:   "",
 		},
 		Data: list_establecimientos})
 }

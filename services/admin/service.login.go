@@ -19,8 +19,8 @@ func Login(c echo.Context) error {
 	if err != nil {
 		return c.JSON(400, &helpers.ResponseJwt{
 			Error: helpers.ErrorStructure{
-				Code:   9451,
-				Detail: "Revisa la estructura o el tipo del valor",
+				HasError: true,
+				Detail:   "Revisa la estructura o el tipo del valor",
 			},
 			Data: helpers.JwtStructure{
 				JWT:            "",
@@ -34,8 +34,8 @@ func Login(c echo.Context) error {
 	if len(input_admin.Correo) < 1 || len(input_admin.Correo) > 50 || len(input_admin.Contrasenia) < 8 || len(input_admin.Contrasenia) > 12 {
 		return c.JSON(400, &helpers.ResponseJwt{
 			Error: helpers.ErrorStructure{
-				Code:   9452,
-				Detail: "El Correo no puede exceder la longitud de 50 y la Contraseña debe estar entre 8-12 caracteres",
+				HasError: true,
+				Detail:   "El Correo no puede exceder la longitud de 50 y la Contraseña debe estar entre 8-12 caracteres",
 			},
 			Data: helpers.JwtStructure{
 				JWT:            "",
@@ -50,8 +50,8 @@ func Login(c echo.Context) error {
 	if error_findbyemail != nil {
 		return c.JSON(400, &helpers.ResponseJwt{
 			Error: helpers.ErrorStructure{
-				Code:   9457,
-				Detail: error_findbyemail.Error(),
+				HasError: true,
+				Detail:   error_findbyemail.Error(),
 			},
 			Data: helpers.JwtStructure{
 				JWT:            "",
@@ -63,8 +63,8 @@ func Login(c echo.Context) error {
 	if admin_found.Correo == "" {
 		return c.JSON(400, &helpers.ResponseJwt{
 			Error: helpers.ErrorStructure{
-				Code:   9455,
-				Detail: "Admin no encontrado",
+				HasError: true,
+				Detail:   "Admin no encontrado",
 			},
 			Data: helpers.JwtStructure{
 				JWT:            "",
@@ -79,8 +79,8 @@ func Login(c echo.Context) error {
 	if error_compareToken != nil {
 		return c.JSON(400, &helpers.ResponseJwt{
 			Error: helpers.ErrorStructure{
-				Code:   9459,
-				Detail: "Contraseña incorrecta, detalle:" + error_compareToken.Error(),
+				HasError: true,
+				Detail:   "Contraseña incorrecta, detalle:" + error_compareToken.Error(),
 			},
 			Data: helpers.JwtStructure{
 				JWT:            "",
@@ -95,8 +95,8 @@ func Login(c echo.Context) error {
 	if error_generatingJWT != nil {
 		return c.JSON(500, &helpers.ResponseJwt{
 			Error: helpers.ErrorStructure{
-				Code:   94510,
-				Detail: "Error when trying to generate the token, detail:" + error_generatingJWT.Error(),
+				HasError: true,
+				Detail:   "Error when trying to generate the token, detail:" + error_generatingJWT.Error(),
 			},
 			Data: helpers.JwtStructure{
 				JWT:            "",
@@ -111,8 +111,8 @@ func Login(c echo.Context) error {
 	if err_add_re != nil {
 		return c.JSON(500, &helpers.ResponseJwt{
 			Error: helpers.ErrorStructure{
-				Code:   94510,
-				Detail: err_add_re.Error(),
+				HasError: true,
+				Detail:   err_add_re.Error(),
 			},
 			Data: helpers.JwtStructure{
 				JWT:            "",
@@ -125,8 +125,8 @@ func Login(c echo.Context) error {
 	//OK
 	return c.JSON(200, &helpers.ResponseJwt{
 		Error: helpers.ErrorStructure{
-			Code:   0,
-			Detail: "",
+			HasError: false,
+			Detail:   "",
 		},
 		Data: helpers.JwtStructure{
 			JWT:            jwtKey,

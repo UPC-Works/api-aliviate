@@ -19,8 +19,8 @@ func Add(c echo.Context) error {
 	if err != nil {
 		return c.JSON(400, &helpers.ResponseString{
 			Error: helpers.ErrorStructure{
-				Code:   9451,
-				Detail: "Check the structure or the type of the value",
+				HasError: true,
+				Detail:   "Check the structure or the type of the value",
 			},
 			Data: ""})
 	}
@@ -31,8 +31,8 @@ func Add(c echo.Context) error {
 	if error_create_paciente != nil {
 		return c.JSON(500, &helpers.ResponseString{
 			Error: helpers.ErrorStructure{
-				Code:   9457,
-				Detail: error_create_paciente.Error(),
+				HasError: true,
+				Detail:   error_create_paciente.Error(),
 			},
 			Data: ""})
 	}
@@ -40,8 +40,8 @@ func Add(c echo.Context) error {
 	//OK
 	return c.JSON(200, &helpers.ResponseString{
 		Error: helpers.ErrorStructure{
-			Code:   0,
-			Detail: "",
+			HasError: false,
+			Detail:   "",
 		},
 		Data: "OK"})
 }

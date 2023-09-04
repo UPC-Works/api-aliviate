@@ -25,16 +25,16 @@ func Auth(next echo.HandlerFunc) echo.HandlerFunc {
 		if error_decode != nil {
 			return c.JSON(403, &helpers.ResponseString{
 				Error: helpers.ErrorStructure{
-					Code:   9459,
-					Detail: "Error en la autenticacion, detalles: " + error_decode.Error(),
+					HasError: true,
+					Detail:   "Error en la autenticacion, detalles: " + error_decode.Error(),
 				},
 				Data: ""})
 		}
 		if response_auth.Data.Id == "" {
 			return c.JSON(403, &helpers.ResponseString{
 				Error: helpers.ErrorStructure{
-					Code:   9459,
-					Detail: "Error en la autenticacion, detalle: Este usuario no existe",
+					HasError: true,
+					Detail:   "Error en la autenticacion, detalle: Este usuario no existe",
 				},
 				Data: ""})
 		}
