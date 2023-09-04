@@ -1,6 +1,8 @@
 package auth
 
 import (
+	"log"
+
 	"github.com/labstack/echo/v4"
 
 	helpers "github.com/UPC-Works/api-aliviate/helpers"
@@ -14,6 +16,8 @@ func Authentication(c echo.Context) error {
 
 	//Get the auth-token
 	input_jwt := c.Request().Header.Get("auth-token")
+
+	log.Println("1 ------>", input_jwt)
 
 	//Initialize claims
 	claims := &models.Claim{}
@@ -58,8 +62,10 @@ func Authentication(c echo.Context) error {
 			}})
 	}
 
+	log.Println("2 ------>", claims)
+
 	//If the session is from the Admin
-	if claims.Rol == 0 {
+	if claims.Rol == 1 {
 
 		id_admin, error_get_re := admin_repository.Re_GetId(claims.Id)
 

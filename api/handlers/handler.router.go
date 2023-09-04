@@ -41,9 +41,7 @@ func HandlerRouters() {
 	//V1 - ESTABLECIMIENTO
 	router_establecimiento := version_1.Group("/establecimiento", middleware_api.Auth)
 	router_establecimiento.POST("", establecimiento_service.Add)
-	/*router_warehouse.GET("", warehouse_service.GetAll)
-	router_warehouse.PUT("", warehouse_service.Update)
-	router_warehouse.DELETE("", warehouse_service.SendToDelete)*/
+	router_establecimiento.GET("", establecimiento_service.GetAll)
 
 	//V1 - HISTORIA CLINICA
 	router_historia := version_1.Group("/historia_clinica", middleware_api.Auth)

@@ -10,7 +10,7 @@ import (
 	models "github.com/UPC-Works/api-aliviate/models"
 )
 
-func Pg_FindMultiple(input_id string, input_limit int, input_offset int) ([]models.Establecimiento, error) {
+func Pg_FindMultiple(input_id string) ([]models.Establecimiento, error) {
 
 	//Initialization
 	var oListEstablecimiento []models.Establecimiento
@@ -47,7 +47,7 @@ FROM Establecimiento `
 		q += strings.Join(clausulas, " AND ")
 
 	}
-	rows, error_find := db.Query(ctx, q+" ORDER BY nombre DESC LIMIT $1 OFFSET $2", input_limit, input_offset)
+	rows, error_find := db.Query(ctx, q+" ORDER BY nombre DESC")
 	if error_find != nil {
 		return oListEstablecimiento, error_find
 	}
