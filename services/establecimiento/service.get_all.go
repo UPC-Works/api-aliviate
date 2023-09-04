@@ -10,11 +10,8 @@ import (
 
 func GetAll(c echo.Context) error {
 
-	//Get the id_establecimiento from the Middleware
-	id_establecimiento := c.Get("id").(string)
-
 	//Get the all establecimientos
-	list_establecimientos, error_find_establecimientos := establecimiento_repository.Pg_FindMultiple(id_establecimiento)
+	list_establecimientos, error_find_establecimientos := establecimiento_repository.Pg_FindMultiple()
 	if error_find_establecimientos != nil {
 		return c.JSON(500, &helpers.ResponseListEstablecimiento{
 			Error: helpers.ErrorStructure{

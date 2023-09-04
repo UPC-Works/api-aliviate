@@ -10,7 +10,7 @@ import (
 	models "github.com/UPC-Works/api-aliviate/models"
 )
 
-func Pg_FindMultiple(input_id string) ([]models.Establecimiento, error) {
+func Pg_FindMultiple() ([]models.Establecimiento, error) {
 
 	//Initialization
 	var oListEstablecimiento []models.Establecimiento
@@ -18,10 +18,6 @@ func Pg_FindMultiple(input_id string) ([]models.Establecimiento, error) {
 	//Define the filters
 	filters := map[string]interface{}{}
 	counter_filters := 0
-	if input_id != "" {
-		filters["id"] = input_id
-		counter_filters += 1
-	}
 
 	//Context timing
 	ctx, cancel := context.WithTimeout(context.Background(), 8*time.Second)
