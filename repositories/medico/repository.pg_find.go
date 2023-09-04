@@ -58,11 +58,10 @@ FROM Medico `
 		&oMedico.Nombre,
 		&oMedico.Apellido,
 		&oMedico.Colegiatura,
-		&oMedico.DocumentoIdentidad,
 		&oMedico.Correo,
 		&oMedico.Contrasenia,
-		&oMedico.FechaRegistro,
 		&oMedico.Direccion,
+		&oMedico.FechaRegistro,
 		&oMedico.Especialidad)
 
 	if error_find != nil {
@@ -102,7 +101,6 @@ func Pg_FindMultiple(input_id string, input_limit int, input_offset int) ([]mode
 		nombre             ,
 		apellido           ,
 		colegiatura        ,
-		documento_identidad,
 		correo             ,
 		contrasenia        ,
 		direccion          ,
@@ -130,11 +128,10 @@ FROM Medico `
 			&oMedico.Nombre,
 			&oMedico.Apellido,
 			&oMedico.Colegiatura,
-			&oMedico.DocumentoIdentidad,
 			&oMedico.Correo,
 			&oMedico.Contrasenia,
-			&oMedico.FechaRegistro,
 			&oMedico.Direccion,
+			&oMedico.FechaRegistro,
 			&oMedico.Especialidad)
 		oListMedico = append(oListMedico, oMedico)
 	}
