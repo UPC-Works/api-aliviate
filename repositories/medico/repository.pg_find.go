@@ -37,7 +37,6 @@ func Pg_FindOne(input_email string) (models.Medico, error) {
 		nombre             ,
 		apellido           ,
 		colegiatura        ,
-		documento_identidad,
 		correo             ,
 		contrasenia        ,
 		direccion          ,
