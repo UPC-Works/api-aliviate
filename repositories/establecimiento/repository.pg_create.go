@@ -18,7 +18,7 @@ func Pg_Create(input_establecimiento *models.Establecimiento) error {
 
 	query := `INSERT INTO Establecimiento (
 		id                 ,
-		nombre             .
+		nombre             ,
 		id_distrito,
 		direccion
 	) VALUES ($1,$2,$3,$4)`
