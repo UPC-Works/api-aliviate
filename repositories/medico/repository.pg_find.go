@@ -72,7 +72,7 @@ FROM Medico `
 	return oMedico, nil
 }
 
-func Pg_FindMultiple(input_id string, input_limit int, input_offset int) ([]models.Medico, error) {
+func Pg_FindMultiple(input_nombre string) ([]models.Medico, error) {
 
 	//Initialization
 	var oListMedico []models.Medico
@@ -80,8 +80,8 @@ func Pg_FindMultiple(input_id string, input_limit int, input_offset int) ([]mode
 	//Define the filters
 	filters := map[string]interface{}{}
 	counter_filters := 0
-	if input_id != "" {
-		filters["id"] = input_id
+	if input_nombre != "" {
+		filters["nombre"] = input_nombre
 		counter_filters += 1
 	}
 
@@ -115,7 +115,7 @@ FROM Medico `
 		q += strings.Join(clausulas, " AND ")
 
 	}
-	rows, error_find := db.Query(ctx, q+" ORDER BY fecha_registro DESC LIMIT $1 OFFSET $2", input_limit, input_offset)
+	rows, error_find := db.Query(ctx, q+" ORDER BY fecha_registro DESC")
 	if error_find != nil {
 		return oListMedico, error_find
 	}

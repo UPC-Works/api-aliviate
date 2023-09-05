@@ -31,3 +31,16 @@ func NewMedico(id string, nombre string, apellido string, colegiatura string, co
 		Especialidad:  especialidad,
 	}
 }
+
+func UpdateMedico(id string, nombre string, apellido string, colegiatura string, correo string, contrasenia string, direccion string, especialidad string) *Medico {
+	return &Medico{
+		Id:           id,
+		Nombre:       nombre,
+		Apellido:     apellido,
+		Colegiatura:  colegiatura,
+		Correo:       correo,
+		Contrasenia:  contrasenia,
+		Direccion:    direccion,
+		Especialidad: especialidad,
+	}
+}

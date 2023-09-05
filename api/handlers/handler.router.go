@@ -55,9 +55,8 @@ func HandlerRouters() {
 	router_medico := version_1.Group("/medico")
 	router_medico.POST("/sign-up", medico_service.SignUp)
 	router_medico.POST("/login", medico_service.Login)
-	/*router_medico.GET("", measure_service.GetAll)
-	router_medico.PUT("", provider_service.Update)
-	router_medico.DELETE("", measure_service.Delete)*/
+	router_medico.GET("", medico_service.GetAll, middleware_api.Auth)
+	router_medico.PUT("", medico_service.Update, middleware_api.Auth)
 
 	//V1 - PACIENTE
 	router_paciente := version_1.Group("/paciente", middleware_api.Auth)
