@@ -47,9 +47,8 @@ func HandlerRouters() {
 	//V1 - HISTORIA CLINICA
 	router_historia := version_1.Group("/historia_clinica", middleware_api.Auth)
 	router_historia.POST("", historia_clinica_service.Add)
-	/*router_provider.GET("", provider_service.GetAll)
-	router_provider.PUT("", provider_service.Update)
-	router_provider.DELETE("", provider_service.SendToDelete)*/
+	router_historia.GET("", historia_clinica_service.GetAll)
+	router_historia.PUT("", historia_clinica_service.Update)
 
 	//V1 - MEDICO
 	router_medico := version_1.Group("/medico")
