@@ -60,9 +60,8 @@ func HandlerRouters() {
 	//V1 - PACIENTE
 	router_paciente := version_1.Group("/paciente", middleware_api.Auth)
 	router_paciente.POST("", paciente_service.Add)
-	/*router_supply.GET("", supply_service.GetAll)
-	router_supply.PUT("", supply_service.Update)
-	router_supply.DELETE("", supply_service.SendToDelete)*/
+	router_paciente.GET("", paciente_service.GetAll)
+	router_paciente.PUT("", paciente_service.Update)
 
 	//Open the port
 	PORT := os.Getenv("PORT")

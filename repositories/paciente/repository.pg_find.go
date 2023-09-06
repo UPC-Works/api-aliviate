@@ -68,7 +68,7 @@ FROM Paciente `
 	return oPaciente, nil
 }
 
-func Pg_FindMultiple(input_id string, input_limit int, input_offset int) ([]models.Paciente, error) {
+func Pg_FindMultiple(input_id string, input_documento_identidad int, input_limit int, input_offset int) ([]models.Paciente, error) {
 
 	//Initialization
 	var oListPaciente []models.Paciente
@@ -78,6 +78,10 @@ func Pg_FindMultiple(input_id string, input_limit int, input_offset int) ([]mode
 	counter_filters := 0
 	if input_id != "" {
 		filters["id"] = input_id
+		counter_filters += 1
+	}
+	if input_documento_identidad != 0 {
+		filters["documento_identidad"] = input_documento_identidad
 		counter_filters += 1
 	}
 
@@ -103,7 +107,11 @@ FROM Paciente `
 		q += " WHERE "
 		clausulas := make([]string, 0)
 		for key, value := range filters {
-			clausulas = append(clausulas, fmt.Sprintf("%s = '%s'", key, value))
+			if key == "documento_identidad" {
+				clausulas = append(clausulas, fmt.Sprintf("%s = %d", key, value))
+			} else {
+				clausulas = append(clausulas, fmt.Sprintf("%s = '%s'", key, value))
+			}
 		}
 		q += strings.Join(clausulas, " AND ")
 

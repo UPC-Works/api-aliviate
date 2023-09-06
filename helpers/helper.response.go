@@ -38,3 +38,9 @@ type ResponseListEstablecimiento struct {
 	Error  ErrorStructure           `json:"error"`
 	Data   []models.Establecimiento `json:"data"`
 }
+
+type ResponseListPaciente struct {
+	Status int               `json:"status,omitempty"`
+	Error  ErrorStructure    `json:"error"`
+	Data   []models.Paciente `json:"data"`
+}
