@@ -37,30 +37,20 @@ func Update(c echo.Context) error {
 	//Find in the Storage
 	medico_found, error_findbyemail := medico_repository.Pg_FindOne(input_medico.Correo)
 	if error_findbyemail != nil {
-		return c.JSON(400, &helpers.ResponseJwt{
+		return c.JSON(400, &helpers.ResponseString{
 			Error: helpers.ErrorStructure{
 				HasError: true,
 				Detail:   error_findbyemail.Error(),
 			},
-			Data: helpers.JwtStructure{
-				JWT:            "",
-				NombreCompleto: "",
-				Correo:         "",
-				Rol:            0,
-			}})
+			Data: ""})
 	}
 	if medico_found.Correo == "" {
-		return c.JSON(400, &helpers.ResponseJwt{
+		return c.JSON(400, &helpers.ResponseString{
 			Error: helpers.ErrorStructure{
 				HasError: true,
 				Detail:   "Medico no encontrado",
 			},
-			Data: helpers.JwtStructure{
-				JWT:            "",
-				NombreCompleto: "",
-				Correo:         "",
-				Rol:            0,
-			}})
+			Data: ""})
 	}
 
 	//Storage the Medico
