@@ -31,13 +31,14 @@ type Consulta struct {
 	TratamientoIA                 string    `json:"tratamientoIA"`
 	ExamenesAuxiliares            []string  `json:"examenesAuxiliares"`
 	ProximaCita                   time.Time `json:"proximaCita"`
-	AtentidoPor                   Medico    `json:"atentidoPor"`
 	Observaciones                 string    `json:"observaciones"`
+	NombreCompletoPaciente        string    `json:"nombreCompletoPaciente"`
+	IdPaciente                    string    `json:"idPaciente"`
 }
 
 //Constructor
 
-func NewConsulta(id string, idHistoriaClinica string, idMedico string, descripcionEnfermedadPaciente string, tiempoEnfermedad int, apetito string, sed string, suenio string, estadoAnimo string, otroDetalle string, orina string, deposiciones string, temperatura float32, pA string, fC string, fR string, peso float32, talla float32, iMC float32, diagnostico string, tratamiento string, diagnosticoIA string, tratamientoIA string, examenesAuxiliares []string, proximaCita time.Time, atentidoPor Medico, observaciones string,
+func NewConsulta(id string, idHistoriaClinica string, idMedico string, descripcionEnfermedadPaciente string, tiempoEnfermedad int, apetito string, sed string, suenio string, estadoAnimo string, otroDetalle string, orina string, deposiciones string, temperatura float32, pA string, fC string, fR string, peso float32, talla float32, iMC float32, diagnostico string, tratamiento string, diagnosticoIA string, tratamientoIA string, examenesAuxiliares []string, proximaCita time.Time, observaciones string,
 ) *Consulta {
 	return &Consulta{
 		Id:                            id,
@@ -66,12 +67,11 @@ func NewConsulta(id string, idHistoriaClinica string, idMedico string, descripci
 		TratamientoIA:                 tratamientoIA,
 		ExamenesAuxiliares:            examenesAuxiliares,
 		ProximaCita:                   proximaCita,
-		AtentidoPor:                   atentidoPor,
 		Observaciones:                 observaciones,
 	}
 }
 
-func UpdateKardexSupply(id string, idHistoriaClinica string, fechaNacimiento time.Time, descripcionEnfermedadPaciente string, tiempoEnfermedad int, apetito string, sed string, suenio string, estadoAnimo string, otroDetalle string, orina string, deposiciones string, temperatura float32, pA string, fC string, fR string, peso float32, talla float32, iMC float32, diagnostico string, tratamiento string, diagnosticoIA string, tratamientoIA string, examenesAuxiliares []string, proximaCita time.Time, atentidoPor Medico, observaciones string,
+func UpdateConsulta(id string, idHistoriaClinica string, fechaNacimiento time.Time, descripcionEnfermedadPaciente string, tiempoEnfermedad int, apetito string, sed string, suenio string, estadoAnimo string, otroDetalle string, orina string, deposiciones string, temperatura float32, pA string, fC string, fR string, peso float32, talla float32, iMC float32, diagnostico string, tratamiento string, diagnosticoIA string, tratamientoIA string, examenesAuxiliares []string, proximaCita time.Time, observaciones string,
 ) *Consulta {
 	return &Consulta{
 		Id:                            id,
@@ -98,7 +98,6 @@ func UpdateKardexSupply(id string, idHistoriaClinica string, fechaNacimiento tim
 		TratamientoIA:                 tratamientoIA,
 		ExamenesAuxiliares:            examenesAuxiliares,
 		ProximaCita:                   proximaCita,
-		AtentidoPor:                   atentidoPor,
 		Observaciones:                 observaciones,
 	}
 }

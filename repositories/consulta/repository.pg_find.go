@@ -10,7 +10,7 @@ import (
 	models "github.com/UPC-Works/api-aliviate/models"
 )
 
-func Pg_FindMultiple(input_idhistoriaclinica string, input_limit int, input_offset int) ([]models.Consulta, error) {
+func Pg_FindMultiple(input_idhistoriaclinica string, input_documento_identidad int, input_limit int, input_offset int) ([]models.Consulta, error) {
 
 	//Initialization
 	var oListConsulta []models.Consulta
@@ -19,7 +19,11 @@ func Pg_FindMultiple(input_idhistoriaclinica string, input_limit int, input_offs
 	filters := map[string]interface{}{}
 	counter_filters := 0
 	if input_idhistoriaclinica != "" {
-		filters["id_historia_clinica"] = input_idhistoriaclinica
+		filters["co.id_historia_clinica"] = input_idhistoriaclinica
+		counter_filters += 1
+	}
+	if input_documento_identidad != 0 {
+		filters["pa.documento_identidad"] = input_documento_identidad
 		counter_filters += 1
 	}
 
@@ -33,40 +37,46 @@ func Pg_FindMultiple(input_idhistoriaclinica string, input_limit int, input_offs
 
 	//Define the query
 	q := `SELECT 
-	id                             ,
-	id_historia_clinica            ,
-	fecha_registro                 ,
-	descripcion_enfermedad_paciente,
-	tiempo_enfermedad              ,
-	apetito                        ,
-	sed                            ,
-	suenio                         ,
-	estado_anio                    ,
-	otro_detalle                   ,
-	orina                          ,
-	deposiciones                   ,
-	temperatura                    ,
-	p_a                            ,
-	f_c                            ,
-	f_r                            ,
-	peso                           ,
-	talla                          ,
-	i_m_c                          ,
-	diagnostico                    ,
-	tratamiento                    ,
-	diagnostico_ia                 ,
-	tratamiento_ia                 ,
-	tratamiento                    ,
-	examenes_auxiliares            ,
-	proxima_cita                   ,
-	atendido_por                   ,
-	observaciones                  
-FROM Consulta `
+	co.id                             ,
+	co.id_historia_clinica            ,
+	co.fecha_registro                 ,
+	co.descripcion_enfermedad_paciente,
+	co.tiempo_enfermedad              ,
+	co.apetito                        ,
+	co.sed                            ,
+	co.suenio                         ,
+	co.estado_animo                    ,
+	co.otro_detalle                   ,
+	co.orina                          ,
+	co.deposiciones                   ,
+	co.temperatura                    ,
+	co.p_a                            ,
+	co.f_c                            ,
+	co.f_r                            ,
+	co.peso                           ,
+	co.talla                          ,
+	co.i_m_c                          ,
+	co.diagnostico                    ,
+	co.tratamiento                    ,
+	co.diagnostico_ia                 ,
+	co.tratamiento_ia                 ,
+	co.tratamiento                    ,
+	co.examenes_auxiliares            ,
+	co.proxima_cita                   ,
+	co.id_medico                   ,
+	co.observaciones                  ,
+	concat(pa.nombre,' ',pa.apellido),
+	pa.id
+FROM Consulta AS co JOIN HistoriaClinica AS hc ON co.id_historia_clinica=hc.id JOIN Paciente AS pa ON hc.id_paciente=pa.id`
 	if counter_filters > 0 {
 		q += " WHERE "
 		clausulas := make([]string, 0)
 		for key, value := range filters {
-			clausulas = append(clausulas, fmt.Sprintf("%s = '%s'", key, value))
+			if key == "co.documento_identidad" {
+				clausulas = append(clausulas, fmt.Sprintf("%s = %d", key, value))
+			} else {
+				clausulas = append(clausulas, fmt.Sprintf("%s = '%s'", key, value))
+			}
 		}
 		q += strings.Join(clausulas, " AND ")
 
@@ -105,8 +115,10 @@ FROM Consulta `
 			&oConsulta.TratamientoIA,
 			&oConsulta.ExamenesAuxiliares,
 			&oConsulta.ProximaCita,
-			&oConsulta.AtentidoPor,
-			&oConsulta.Observaciones)
+			&oConsulta.IdMedico,
+			&oConsulta.Observaciones,
+			&oConsulta.NombreCompletoPaciente,
+			&oConsulta.IdPaciente)
 		oListConsulta = append(oListConsulta, oConsulta)
 	}
 

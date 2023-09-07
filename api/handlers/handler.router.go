@@ -12,6 +12,7 @@ import (
 	middleware_api "github.com/UPC-Works/api-aliviate/api/middlewares"
 	admin_service "github.com/UPC-Works/api-aliviate/services/admin"
 	auth_service "github.com/UPC-Works/api-aliviate/services/auth"
+	consulta_service "github.com/UPC-Works/api-aliviate/services/consulta"
 	establecimiento_service "github.com/UPC-Works/api-aliviate/services/establecimiento"
 	historia_clinica_service "github.com/UPC-Works/api-aliviate/services/historia_clinica"
 	medico_service "github.com/UPC-Works/api-aliviate/services/medico"
@@ -43,6 +44,11 @@ func HandlerRouters() {
 	router_establecimiento := version_1.Group("/establecimiento", middleware_api.Auth)
 	router_establecimiento.POST("", establecimiento_service.Add)
 	router_establecimiento.GET("", establecimiento_service.GetAll)
+
+	//V1 - CONSULTA
+	router_consulta := version_1.Group("/consulta", middleware_api.Auth)
+	router_consulta.POST("", consulta_service.Add)
+	router_consulta.GET("", consulta_service.GetAll)
 
 	//V1 - HISTORIA CLINICA
 	router_historia := version_1.Group("/historia_clinica", middleware_api.Auth)
