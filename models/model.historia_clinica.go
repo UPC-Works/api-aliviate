@@ -7,14 +7,12 @@ import "time"
 type HistoriaClinica struct {
 	Id                               string      `json:"id "`
 	IdPaciente                       string      `json:"idPaciente"`
+	EstadoCivil                      int         `json:"estadoCivil"`
+	GradoInstitucion                 int         `json:"gradoInstitucion"`
+	Ocupacion                        string      `json:"ocupacion"`
+	Direccion                        string      `json:"direccion"`
 	IdDistrito                       int         `json:"idDistrito"`
 	FechaRegistro                    time.Time   `json:"fechaRegistro"`
-	Direccion                        string      `json:"direccion"`
-	GrupoSanguineo                   string      `json:"grupoSanguineo"`
-	RhSanguineo                      string      `json:"rhSanguineo"`
-	GradoInstitucion                 string      `json:"gradoInstitucion"`
-	RstadoCivil                      int         `json:"rstadoCivil "`
-	Ocupación                        string      `json:"ocupación"`
 	TuvoTuberculosis                 bool        `json:"tuvoTuberculosis"`
 	TieneInfTransSex                 bool        `json:"tieneInfTransSex"`
 	TieneDiabetes                    bool        `json:"tieneDiabetes"`
@@ -85,11 +83,7 @@ type HistoriaClinica struct {
 //Constructor
 
 func NewHistoriaClinica(
-	id string, idPaciente string, idDistrito int, fechaRegistro time.Time, direccion string, grupoSanguineo string,
-	rhSanguineo string,
-	gradoInstitucion string,
-	rstadoCivil int,
-	ocupación string,
+	id string, idPaciente string, idDistrito int, fechaRegistro time.Time, estadoCivil int, gradoInstitucion int, ocupacion string, direccion string,
 	tuvoTuberculosis bool,
 	tieneInfTransSex bool,
 	tieneDiabetes bool,
@@ -156,14 +150,12 @@ func NewHistoriaClinica(
 	return &HistoriaClinica{
 		Id:                               id,
 		IdPaciente:                       idPaciente,
+		EstadoCivil:                      estadoCivil,
+		GradoInstitucion:                 gradoInstitucion,
+		Ocupacion:                        ocupacion,
+		Direccion:                        direccion,
 		IdDistrito:                       idDistrito,
 		FechaRegistro:                    time.Now(),
-		Direccion:                        direccion,
-		GrupoSanguineo:                   grupoSanguineo,
-		RhSanguineo:                      rhSanguineo,
-		GradoInstitucion:                 gradoInstitucion,
-		RstadoCivil:                      rstadoCivil,
-		Ocupación:                        ocupación,
 		TuvoTuberculosis:                 tuvoTuberculosis,
 		TieneInfTransSex:                 tieneInfTransSex,
 		TieneDiabetes:                    tieneDiabetes,
@@ -234,14 +226,8 @@ func NewHistoriaClinica(
 
 func UpdateHistoriaClinica(
 	id string,
-	idPaciente string,
+	idPaciente string, estadoCivil int, gradoInstitucion int, ocupacion string, direccion string,
 	idDistrito int,
-	direccion string,
-	grupoSanguineo string,
-	rhSanguineo string,
-	gradoInstitucion string,
-	rstadoCivil int,
-	ocupación string,
 	tuvoTuberculosis bool,
 	tieneInfTransSex bool,
 	tieneDiabetes bool,
@@ -310,13 +296,11 @@ func UpdateHistoriaClinica(
 	return &HistoriaClinica{
 		Id:                               id,
 		IdPaciente:                       idPaciente,
-		IdDistrito:                       idDistrito,
-		Direccion:                        direccion,
-		GrupoSanguineo:                   grupoSanguineo,
-		RhSanguineo:                      rhSanguineo,
+		EstadoCivil:                      estadoCivil,
 		GradoInstitucion:                 gradoInstitucion,
-		RstadoCivil:                      rstadoCivil,
-		Ocupación:                        ocupación,
+		Ocupacion:                        ocupacion,
+		Direccion:                        direccion,
+		IdDistrito:                       idDistrito,
 		TuvoTuberculosis:                 tuvoTuberculosis,
 		TieneInfTransSex:                 tieneInfTransSex,
 		TieneDiabetes:                    tieneDiabetes,
