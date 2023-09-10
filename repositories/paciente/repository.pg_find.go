@@ -101,7 +101,10 @@ func Pg_FindMultiple(input_id string, input_documento_identidad int, input_limit
 	fecha_nacimiento   ,
 	genero             ,
 	documento_identidad,
-	fecha_registro 
+	fecha_registro ,
+	grupo_sanguineo,
+	rh_sanguineo,
+	telefono
 FROM Paciente `
 	if counter_filters > 0 {
 		q += " WHERE "
@@ -131,7 +134,10 @@ FROM Paciente `
 			&oPaciente.FechaNacimiento,
 			&oPaciente.Genero,
 			&oPaciente.DocumentoIdentidad,
-			&oPaciente.FechaRegistro)
+			&oPaciente.FechaRegistro,
+			&oPaciente.GrupoSanguineo,
+			&oPaciente.RhSanguineo,
+			&oPaciente.Telefono)
 		oListPaciente = append(oListPaciente, oPaciente)
 	}
 

@@ -54,7 +54,7 @@ func Update(c echo.Context) error {
 	}
 
 	//Storage the Paciente
-	update_paciente := models.UpdatePaciente(input_paciente.Id, input_paciente.Nombre, input_paciente.Apellido, input_paciente.FechaNacimiento, input_paciente.Genero, input_paciente.DocumentoIdentidad)
+	update_paciente := models.UpdatePaciente(input_paciente.Id, input_paciente.Nombre, input_paciente.Apellido, input_paciente.FechaNacimiento, input_paciente.Genero, input_paciente.DocumentoIdentidad, input_paciente.GrupoSanguineo, input_paciente.RhSanguineo, input_paciente.Telefono)
 	error_create_paciente := paciente_repository.Pg_Create(update_paciente)
 	if error_create_paciente != nil {
 		return c.JSON(500, &helpers.ResponseString{

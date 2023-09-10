@@ -26,7 +26,7 @@ func Add(c echo.Context) error {
 	}
 
 	//Validation of the Business Rules
-	if len(input_paciente.Nombre) < 1 || len(input_paciente.Nombre) > 50 || len(input_paciente.Apellido) < 1 || len(input_paciente.Apellido) > 50 || input_paciente.Genero == 0 || input_paciente.DocumentoIdentidad == 0 {
+	if len(input_paciente.Nombre) < 1 || len(input_paciente.Nombre) > 50 || len(input_paciente.Apellido) < 1 || len(input_paciente.Apellido) > 50 || input_paciente.Genero == 0 || input_paciente.DocumentoIdentidad == 0 || input_paciente.GrupoSanguineo == "" || input_paciente.RhSanguineo == "" || input_paciente.Telefono == "" {
 		return c.JSON(400, &helpers.ResponseString{
 			Error: helpers.ErrorStructure{
 				HasError: true,
@@ -36,7 +36,7 @@ func Add(c echo.Context) error {
 	}
 
 	//Storage the Paciente
-	new_paciente := models.NewPaciente(uuid.New().String(), input_paciente.Nombre, input_paciente.Apellido, input_paciente.FechaNacimiento, input_paciente.Genero, input_paciente.DocumentoIdentidad)
+	new_paciente := models.NewPaciente(uuid.New().String(), input_paciente.Nombre, input_paciente.Apellido, input_paciente.FechaNacimiento, input_paciente.Genero, input_paciente.DocumentoIdentidad, input_paciente.GrupoSanguineo, input_paciente.RhSanguineo, input_paciente.Telefono)
 	error_create_paciente := paciente_repository.Pg_Create(new_paciente)
 	if error_create_paciente != nil {
 		return c.JSON(500, &helpers.ResponseString{

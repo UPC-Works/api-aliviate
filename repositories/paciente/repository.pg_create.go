@@ -23,8 +23,11 @@ func Pg_Create(input_paciente *models.Paciente) error {
 		fecha_nacimiento   ,
 		genero             ,
 		documento_identidad,
-		fecha_registro     
-	) VALUES ($1,$2,$3,$4,$5,$6,$7)`
+		fecha_registro     ,
+		grupo_sanguineo,
+		rh_sanguineo,
+		telefono
+	) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`
 	_, err_query := db.Exec(ctx, query,
 		input_paciente.Id,
 		input_paciente.Nombre,
@@ -33,6 +36,9 @@ func Pg_Create(input_paciente *models.Paciente) error {
 		input_paciente.Genero,
 		input_paciente.DocumentoIdentidad,
 		input_paciente.FechaRegistro,
+		input_paciente.GrupoSanguineo,
+		input_paciente.RhSanguineo,
+		input_paciente.Telefono,
 	)
 
 	if err_query != nil {
