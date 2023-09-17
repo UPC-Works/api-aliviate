@@ -48,7 +48,6 @@ func Pg_Create(input_historia_clinica *models.HistoriaClinica) error {
 		tiene_its                         ,
 		tiene_hepatitis                   ,
 		tiene_dbm                         ,
-		tiene_infarto                     ,
 		tiene_cancer                      ,
 		tiene_depresion                   ,
 		tiene_prob_psiquiatricos          ,
