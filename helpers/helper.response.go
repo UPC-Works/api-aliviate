@@ -28,9 +28,9 @@ type ResponseListMedico struct {
 }
 
 type ResponseListHistoriaClinica struct {
-	Status int                      `json:"status,omitempty"`
-	Error  ErrorStructure           `json:"error"`
-	Data   []models.HistoriaClinica `json:"data"`
+	Status int                           `json:"status,omitempty"`
+	Error  ErrorStructure                `json:"error"`
+	Data   []models.HistoriaClinica_View `json:"data"`
 }
 
 type ResponseListEstablecimiento struct {

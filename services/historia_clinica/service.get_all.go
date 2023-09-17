@@ -13,15 +13,15 @@ import (
 func GetAll(c echo.Context) error {
 
 	//Get the filters from the client
-	idHistoriaClinica := c.Request().URL.Query().Get("idHistoriaClinica")
-
+	documentoIdentidadPaciente_string := c.Request().URL.Query().Get("documentoIdentidadPaciente")
 	limit_string := c.Request().URL.Query().Get("limit")
 	offset_string := c.Request().URL.Query().Get("offset")
+	documentoIdentidadPaciente, _ := strconv.Atoi(documentoIdentidadPaciente_string)
 	limit, _ := strconv.Atoi(limit_string)
 	offset, _ := strconv.Atoi(offset_string)
 
 	//Get the all historia_clinicas
-	list_historia_clinicas, error_find_historia_clinicas := historia_clinica_repository.Pg_FindMultiple(idHistoriaClinica, limit, offset)
+	list_historia_clinicas, error_find_historia_clinicas := historia_clinica_repository.Pg_FindMultiple(documentoIdentidadPaciente, limit, offset)
 	if error_find_historia_clinicas != nil {
 		return c.JSON(500, &helpers.ResponseListMedico{
 			Error: helpers.ErrorStructure{

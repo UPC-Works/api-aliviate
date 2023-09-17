@@ -81,6 +81,16 @@ type HistoriaClinica struct {
 	TienePlanificacionSexual         bool        `json:"tienePlanificacionSexual"`
 }
 
+type HistoriaClinica_View struct {
+	Id                         string    `json:"id "`
+	FechaRegistro              time.Time `json:"fechaRegistro"`
+	IdPaciente                 string    `json:"idPaciente"`
+	DocumentoIdentidadPaciente int       `json:"documentoIdentidadPaciente"`
+	NombreCompletoPaciente     string    `json:"nombreCompletoPaciente"`
+	IdMedico                   string    `json:"idMedico"`
+	NombreCompletoMedico       string    `json:"nombreCompletoMedico"`
+}
+
 //Constructor
 
 func NewHistoriaClinica(
