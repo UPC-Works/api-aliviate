@@ -16,7 +16,7 @@ func Pg_Create(input_historia_clinica *models.HistoriaClinica) error {
 
 	db := configs.Conn_Pg_DB()
 
-	query := `INSERT INTO Medico (
+	query := `INSERT INTO HistoriaClinica (
 		id                                ,
 		id_paciente,
 		estado_civil,
