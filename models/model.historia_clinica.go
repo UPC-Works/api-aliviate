@@ -6,6 +6,7 @@ import "time"
 
 type HistoriaClinica struct {
 	Id                               string      `json:"id "`
+	IdMedico                         string      `json:"idMedico"`
 	IdPaciente                       string      `json:"idPaciente"`
 	EstadoCivil                      int         `json:"estadoCivil"`
 	GradoInstitucion                 int         `json:"gradoInstitucion"`
@@ -83,7 +84,7 @@ type HistoriaClinica struct {
 //Constructor
 
 func NewHistoriaClinica(
-	id string, idPaciente string, idDistrito int, fechaRegistro time.Time, estadoCivil int, gradoInstitucion int, ocupacion string, direccion string,
+	id string, idMedico string, idPaciente string, idDistrito int, fechaRegistro time.Time, estadoCivil int, gradoInstitucion int, ocupacion string, direccion string,
 	tuvoTuberculosis bool,
 	tieneInfTransSex bool,
 	tieneDiabetes bool,
@@ -149,6 +150,7 @@ func NewHistoriaClinica(
 	tieneHabAlcohol bool, tieneHabDrogas bool, tienePlanificacionSexual bool) *HistoriaClinica {
 	return &HistoriaClinica{
 		Id:                               id,
+		IdMedico:                         idMedico,
 		IdPaciente:                       idPaciente,
 		EstadoCivil:                      estadoCivil,
 		GradoInstitucion:                 gradoInstitucion,
