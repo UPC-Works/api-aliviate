@@ -227,7 +227,7 @@ func Pg_FindMultiple(input_documento_identidad int, input_limit int, input_offse
 		q += strings.Join(clausulas, " AND ")
 
 	}
-	rows, error_find := db.Query(ctx, q+" ORDER BY hc.fecha_registro DESC LIMIT $1 OFFSET $2", input_limit, input_offset)
+	rows, error_find := db.Query(ctx, q+" HistoriaClinica BY hc.fecha_registro DESC LIMIT $1 OFFSET $2", input_limit, input_offset)
 	if error_find != nil {
 		return oListHistoriaClinica, error_find
 	}
