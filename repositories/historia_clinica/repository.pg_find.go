@@ -217,7 +217,7 @@ func Pg_FindMultiple(input_documento_identidad int, input_limit int, input_offse
 	db := configs.Conn_Pg_DB()
 
 	//Define the query
-	q := `SELECT hc.id,hc.fecha_Registro,pa.id,concat(pa.nombre,pa.apellido),pa.documento_identidad,me.id,concat(me.nombre,me.apellido) FROM historiaclinica AS hc JOIN medico AS me ON hc.id_medico=me.id JOIN paciente AS pa`
+	q := `SELECT hc.id,hc.fecha_Registro,pa.id,concat(pa.nombre,pa.apellido),pa.documento_identidad,me.id,concat(me.nombre,me.apellido) FROM historiaclinica AS hc JOIN medico AS me ON hc.id_medico=me.id JOIN paciente AS pa ON hc.id_paciente=pa.id`
 	if counter_filters > 0 {
 		q += " WHERE "
 		clausulas := make([]string, 0)
@@ -227,7 +227,7 @@ func Pg_FindMultiple(input_documento_identidad int, input_limit int, input_offse
 		q += strings.Join(clausulas, " AND ")
 
 	}
-	rows, error_find := db.Query(ctx, q+" HistoriaClinica BY hc.fecha_registro DESC LIMIT $1 OFFSET $2", input_limit, input_offset)
+	rows, error_find := db.Query(ctx, q+" ORDER BY hc.fecha_registro DESC LIMIT $1 OFFSET $2", input_limit, input_offset)
 	if error_find != nil {
 		return oListHistoriaClinica, error_find
 	}
