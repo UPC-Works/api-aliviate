@@ -50,3 +50,9 @@ type ResponseListConsulta struct {
 	Error  ErrorStructure    `json:"error"`
 	Data   []models.Consulta `json:"data"`
 }
+
+type ResponseHistoriaClinica struct {
+	Status int                    `json:"status,omitempty"`
+	Error  ErrorStructure         `json:"error"`
+	Data   models.HistoriaClinica `json:"data"`
+}

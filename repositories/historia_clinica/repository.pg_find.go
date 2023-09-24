@@ -195,7 +195,7 @@ FROM HistoriaClinica `
 	return oHistoriaClinica, nil
 }
 
-func Pg_FindMultiple(input_documento_identidad int, input_limit int, input_offset int) ([]models.HistoriaClinica_View, error) {
+func Pg_FindMultiple(input_id_medico string, input_documento_identidad int, input_limit int, input_offset int) ([]models.HistoriaClinica_View, error) {
 
 	//Initialization
 	var oListHistoriaClinica []models.HistoriaClinica_View
@@ -205,6 +205,10 @@ func Pg_FindMultiple(input_documento_identidad int, input_limit int, input_offse
 	counter_filters := 0
 	if input_documento_identidad != 0 {
 		filters["pa.documento_identidad"] = input_documento_identidad
+		counter_filters += 1
+	}
+	if input_id_medico != "" {
+		filters["me.id"] = input_id_medico
 		counter_filters += 1
 	}
 
