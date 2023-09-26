@@ -11,6 +11,7 @@ import (
 
 	middleware_api "github.com/UPC-Works/api-aliviate/api/middlewares"
 	admin_service "github.com/UPC-Works/api-aliviate/services/admin"
+	analisis_laboratorio_service "github.com/UPC-Works/api-aliviate/services/analisis_laboratorio"
 	auth_service "github.com/UPC-Works/api-aliviate/services/auth"
 	consulta_service "github.com/UPC-Works/api-aliviate/services/consulta"
 	establecimiento_service "github.com/UPC-Works/api-aliviate/services/establecimiento"
@@ -68,6 +69,12 @@ func HandlerRouters() {
 	router_paciente.POST("", paciente_service.Add)
 	router_paciente.GET("", paciente_service.GetAll)
 	router_paciente.PUT("", paciente_service.Update)
+
+	//V1 - ANALISIS LABORATORIO
+	router_analisis_laboratorio := version_1.Group("/analisis_laboratorio", middleware_api.Auth)
+	router_analisis_laboratorio.POST("", analisis_laboratorio_service.Add)
+	router_analisis_laboratorio.PUT("", analisis_laboratorio_service.Update)
+	router_analisis_laboratorio.GET("/:id_analisis_laboratorio", analisis_laboratorio_service.GetOne)
 
 	//Open the port
 	PORT := os.Getenv("PORT")

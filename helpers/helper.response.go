@@ -56,3 +56,9 @@ type ResponseHistoriaClinica struct {
 	Error  ErrorStructure         `json:"error"`
 	Data   models.HistoriaClinica `json:"data"`
 }
+
+type ResponseAnalisisLaboratorio struct {
+	Status int                        `json:"status,omitempty"`
+	Error  ErrorStructure             `json:"error"`
+	Data   models.AnalisisLaboratorio `json:"data"`
+}
