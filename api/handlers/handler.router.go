@@ -55,7 +55,7 @@ func HandlerRouters() {
 	router_historia := version_1.Group("/historia_clinica", middleware_api.Auth)
 	router_historia.POST("", historia_clinica_service.Add)
 	router_historia.GET("", historia_clinica_service.GetAll)
-	router_historia.GET("/", historia_clinica_service.GetOne)
+	router_historia.GET("/:id_historia_clinica", historia_clinica_service.GetOne)
 
 	//V1 - MEDICO
 	router_medico := version_1.Group("/medico")
@@ -74,7 +74,7 @@ func HandlerRouters() {
 	router_analisis_laboratorio := version_1.Group("/analisis_laboratorio", middleware_api.Auth)
 	router_analisis_laboratorio.POST("", analisis_laboratorio_service.Add)
 	router_analisis_laboratorio.PUT("", analisis_laboratorio_service.Update)
-	router_analisis_laboratorio.GET("/:id_analisis_laboratorio", analisis_laboratorio_service.GetOne)
+	router_analisis_laboratorio.GET("/:id_historia_clinica", analisis_laboratorio_service.GetOne)
 
 	//Open the port
 	PORT := os.Getenv("PORT")

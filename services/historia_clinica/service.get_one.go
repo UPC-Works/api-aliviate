@@ -9,11 +9,11 @@ import (
 
 func GetOne(c echo.Context) error {
 
-	//Get the filters from the client
-	idHistoriaClinica := c.Request().URL.Query().Get("idHistoriaClinica")
+	//Get the id analisis laboratorio
+	id_historia_clinica := c.Param("id_historia_clinica")
 
 	//Get one historia_clinicas
-	historia_clinica, error_find_historia_clinica := historia_clinica_repository.Pg_FindOne(idHistoriaClinica)
+	historia_clinica, error_find_historia_clinica := historia_clinica_repository.Pg_FindOne(id_historia_clinica)
 	if error_find_historia_clinica != nil {
 		return c.JSON(500, &helpers.ResponseHistoriaClinica{
 			Error: helpers.ErrorStructure{
