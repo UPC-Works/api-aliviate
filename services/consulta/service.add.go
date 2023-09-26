@@ -1,4 +1,4 @@
-package establecimiento
+package consulta
 
 import (
 	"github.com/google/uuid"

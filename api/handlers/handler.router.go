@@ -49,6 +49,7 @@ func HandlerRouters() {
 	//V1 - CONSULTA
 	router_consulta := version_1.Group("/consulta", middleware_api.Auth)
 	router_consulta.POST("", consulta_service.Add)
+	router_consulta.PUT("", consulta_service.Update)
 	router_consulta.GET("", consulta_service.GetAll)
 
 	//V1 - HISTORIA CLINICA

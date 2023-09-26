@@ -71,7 +71,7 @@ func NewConsulta(id string, idHistoriaClinica string, idMedico string, descripci
 	}
 }
 
-func UpdateConsulta(id string, idHistoriaClinica string, fechaNacimiento time.Time, descripcionEnfermedadPaciente string, tiempoEnfermedad int, apetito string, sed string, suenio string, estadoAnimo string, otroDetalle string, orina string, deposiciones string, temperatura float32, pA string, fC string, fR string, peso float32, talla float32, iMC float32, diagnostico string, tratamiento string, diagnosticoIA string, tratamientoIA string, examenesAuxiliares []string, proximaCita time.Time, observaciones string,
+func UpdateConsulta(id string, idHistoriaClinica string, descripcionEnfermedadPaciente string, tiempoEnfermedad int, apetito string, sed string, suenio string, estadoAnimo string, otroDetalle string, orina string, deposiciones string, temperatura float32, pA string, fC string, fR string, peso float32, talla float32, iMC float32, diagnostico string, tratamiento string, diagnosticoIA string, tratamientoIA string, examenesAuxiliares []string, proximaCita time.Time, observaciones string,
 ) *Consulta {
 	return &Consulta{
 		Id:                            id,
