@@ -163,7 +163,6 @@ func Pg_FindMultiple(input_idhistoriaclinica string, input_documento_identidad i
 	co.tratamiento                    ,
 	co.diagnostico_ia                 ,
 	co.tratamiento_ia                 ,
-	co.tratamiento                    ,
 	co.examenes_auxiliares            ,
 	co.proxima_cita                   ,
 	co.id_medico                   ,
