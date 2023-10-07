@@ -175,7 +175,7 @@ FROM Consulta AS co JOIN HistoriaClinica AS hc ON co.id_historia_clinica=hc.id J
 		q += " WHERE "
 		clausulas := make([]string, 0)
 		for key, value := range filters {
-			if key == "co.documento_identidad" {
+			if key == "pa.documento_identidad" {
 				clausulas = append(clausulas, fmt.Sprintf("%s = %d", key, value))
 			} else {
 				clausulas = append(clausulas, fmt.Sprintf("%s = '%s'", key, value))
