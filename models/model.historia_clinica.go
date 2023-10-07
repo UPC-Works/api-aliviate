@@ -89,6 +89,8 @@ type HistoriaClinica_View struct {
 	NombreCompletoPaciente     string    `json:"nombreCompletoPaciente"`
 	IdMedico                   string    `json:"idMedico"`
 	NombreCompletoMedico       string    `json:"nombreCompletoMedico"`
+	IdAnalisisClinico          string    `json:"idAnalisisClinico"`
+	IdsConsultas               string    `json:"idsConsultas"`
 }
 
 //Constructor

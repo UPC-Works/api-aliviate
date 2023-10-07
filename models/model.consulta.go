@@ -8,6 +8,7 @@ type Consulta struct {
 	Id                            string    `json:"id"`
 	IdHistoriaClinica             string    `json:"idHistoriaClinica"`
 	IdMedico                      string    `json:"idMedico"`
+	NombreMedico                  string    `json:"nombreMedico"`
 	FechaRegistro                 time.Time `json:"fechaRegistro"`
 	DescripcionEnfermedadPaciente string    `json:"descripcionEnfermedadPaciente"`
 	TiempoEnfermedad              int       `json:"tiempoEnfermedad"`

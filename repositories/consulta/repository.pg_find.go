@@ -166,10 +166,11 @@ func Pg_FindMultiple(input_idhistoriaclinica string, input_documento_identidad i
 	co.examenes_auxiliares            ,
 	co.proxima_cita                   ,
 	co.id_medico                   ,
+	concat(me.nombre,' ',me.apellido),
 	co.observaciones                  ,
 	concat(pa.nombre,' ',pa.apellido),
 	pa.id
-FROM Consulta AS co JOIN HistoriaClinica AS hc ON co.id_historia_clinica=hc.id JOIN Paciente AS pa ON hc.id_paciente=pa.id`
+FROM Consulta AS co JOIN HistoriaClinica AS hc ON co.id_historia_clinica=hc.id JOIN Paciente AS pa ON hc.id_paciente=pa.id JOIN Medico as me ON hc.id_medico=me.id`
 	if counter_filters > 0 {
 		q += " WHERE "
 		clausulas := make([]string, 0)
@@ -218,6 +219,7 @@ FROM Consulta AS co JOIN HistoriaClinica AS hc ON co.id_historia_clinica=hc.id J
 			&oConsulta.ExamenesAuxiliares,
 			&oConsulta.ProximaCita,
 			&oConsulta.IdMedico,
+			&oConsulta.NombreMedico,
 			&oConsulta.Observaciones,
 			&oConsulta.NombreCompletoPaciente,
 			&oConsulta.IdPaciente)
