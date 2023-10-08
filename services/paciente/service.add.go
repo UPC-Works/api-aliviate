@@ -1,7 +1,6 @@
 package paciente
 
 import (
-	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 
 	helpers "github.com/UPC-Works/api-aliviate/helpers"
@@ -36,7 +35,7 @@ func Add(c echo.Context) error {
 	}
 
 	//Storage the Paciente
-	new_paciente := models.NewPaciente(uuid.New().String(), input_paciente.Nombre, input_paciente.Apellido, input_paciente.FechaNacimiento, input_paciente.Genero, input_paciente.DocumentoIdentidad, input_paciente.GrupoSanguineo, input_paciente.RhSanguineo, input_paciente.Telefono)
+	new_paciente := models.NewPaciente(input_paciente.Id, input_paciente.Nombre, input_paciente.Apellido, input_paciente.FechaNacimiento, input_paciente.Genero, input_paciente.DocumentoIdentidad, input_paciente.GrupoSanguineo, input_paciente.RhSanguineo, input_paciente.Telefono)
 	error_create_paciente := paciente_repository.Pg_Create(new_paciente)
 	if error_create_paciente != nil {
 		return c.JSON(500, &helpers.ResponseString{
