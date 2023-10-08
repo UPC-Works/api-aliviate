@@ -2,11 +2,13 @@ package config
 
 import (
 	"context"
+	"log"
 	"os"
 	"sync"
 	"time"
 
 	"github.com/jackc/pgx/v4/pgxpool"
+	"github.com/joho/godotenv"
 )
 
 var (
@@ -15,6 +17,11 @@ var (
 )
 
 func Conn_Pg_DB() *pgxpool.Pool {
+
+	err := godotenv.Load(".env.local")
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 
 	//Create the context
 	ctx, cancel := context.WithTimeout(context.Background(), 8*time.Second)
