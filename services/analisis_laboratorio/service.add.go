@@ -26,7 +26,7 @@ func Add(c echo.Context) error {
 	}
 
 	//Storage the Analisis de laboratorio
-	new_analisis_laboratorio := models.NewAnalisisLaboratorio(uuid.New().String(), input_analisis_laboratorio.IdHistoriaClinica, input_analisis_laboratorio.Colesterol, input_analisis_laboratorio.Trigliceridos, input_analisis_laboratorio.ColesterolHdl, input_analisis_laboratorio.ColesterolLdl, input_analisis_laboratorio.ColesterolVldl, input_analisis_laboratorio.Riesgo1, input_analisis_laboratorio.Riesgo2, input_analisis_laboratorio.Glucosa, input_analisis_laboratorio.Hematrocito, input_analisis_laboratorio.Hemoglobina)
+	new_analisis_laboratorio := models.NewAnalisisLaboratorio(uuid.New().String(), input_analisis_laboratorio.IdHistoriaClinica, input_analisis_laboratorio.Colesterol, input_analisis_laboratorio.Trigliceridos, input_analisis_laboratorio.ColesterolHdl, input_analisis_laboratorio.ColesterolLdl, input_analisis_laboratorio.ColesterolVldl, input_analisis_laboratorio.Riesgo1, input_analisis_laboratorio.Riesgo2, input_analisis_laboratorio.Glucosa, input_analisis_laboratorio.Hematrocito, input_analisis_laboratorio.Hemoglobina, input_analisis_laboratorio.TipoExamen, input_analisis_laboratorio.Muestra)
 	error_create_analisis_laboratorio := analisis_laboratorio_repository.Pg_Create(new_analisis_laboratorio)
 	if error_create_analisis_laboratorio != nil {
 		return c.JSON(500, &helpers.ResponseString{
