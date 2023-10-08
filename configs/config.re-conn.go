@@ -16,7 +16,7 @@ func Conn_Re_DB() *redis.Pool {
 	once_re.Do(func() {
 		p_re = &redis.Pool{
 			Dial: func() (redis.Conn, error) {
-				conn, err := redis.Dial("tcp", "redis:6379")
+				conn, err := redis.Dial("tcp", "18.212.135.139:6379")
 				if err != nil {
 					log.Fatal("ERROR: No se puede conectar con Redis")
 				}
