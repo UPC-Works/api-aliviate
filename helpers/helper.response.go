@@ -64,7 +64,7 @@ type ResponseAnalisisLaboratorio struct {
 }
 
 type ResponsePrediccion struct {
-	Status int            `json:"status,omitempty"`
-	Error  ErrorStructure `json:"error"`
-	Data   []interface{}  `json:"data"`
+	Status int                           `json:"status,omitempty"`
+	Error  ErrorStructure                `json:"error"`
+	Data   []models.PrediccionEnfermedad `json:"data"`
 }

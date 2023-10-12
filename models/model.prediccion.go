@@ -2,7 +2,7 @@ package models
 
 // Model
 
-type Prediccion struct {
-	IdHistoriaClinica string   `json:"idHistoriaClinica"`
-	ConsultaActual    Consulta `json:"consultaActual"`
+type PrediccionEnfermedad struct {
+	Enfermedad   string  `json:"enfermedad"`
+	Probabilidad float32 `json:"probabilidad"`
 }
