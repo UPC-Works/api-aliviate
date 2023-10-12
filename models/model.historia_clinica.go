@@ -5,7 +5,7 @@ import "time"
 // Model
 
 type HistoriaClinica struct {
-	Id                               string      `json:"id "`
+	Id                               string      `json:"id"`
 	IdMedico                         string      `json:"idMedico"`
 	IdPaciente                       string      `json:"idPaciente"`
 	EstadoCivil                      int         `json:"estadoCivil"`

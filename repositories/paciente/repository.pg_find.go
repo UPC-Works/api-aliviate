@@ -49,7 +49,11 @@ FROM Paciente `
 		q += " WHERE "
 		clausulas := make([]string, 0)
 		for key, value := range filters {
-			clausulas = append(clausulas, fmt.Sprintf("%s =%d", key, value))
+			if key == "documento_identidad" {
+				clausulas = append(clausulas, fmt.Sprintf("%s = %d", key, value))
+			} else {
+				clausulas = append(clausulas, fmt.Sprintf("%s = '%s'", key, value))
+			}
 		}
 		q += strings.Join(clausulas, " AND ")
 
