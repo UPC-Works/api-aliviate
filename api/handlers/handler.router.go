@@ -79,7 +79,7 @@ func HandlerRouters() {
 	router_analisis_laboratorio.GET("/:id_historia_clinica", analisis_laboratorio_service.GetOne)
 
 	//V1 - PREDICCION
-	router_prediccion := version_1.Group("/prediccion", middleware_api.Auth)
+	router_prediccion := version_1.Group("/prediccion")
 	router_prediccion.POST("/prediccion", prediccion_service.Predecir)
 
 	//Open the port
