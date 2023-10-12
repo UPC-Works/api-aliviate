@@ -10,7 +10,7 @@ import (
 	models "github.com/UPC-Works/api-aliviate/models"
 )
 
-func Pg_FindOne(input_documento_identidad int) (models.Paciente, error) {
+func Pg_FindOne(input_idpaciente string, input_documento_identidad int) (models.Paciente, error) {
 
 	//Initialization
 	var oPaciente models.Paciente
@@ -20,6 +20,10 @@ func Pg_FindOne(input_documento_identidad int) (models.Paciente, error) {
 	counter_filters := 0
 	if input_documento_identidad != 0 {
 		filters["documento_identidad"] = input_documento_identidad
+		counter_filters += 1
+	}
+	if input_idpaciente != "" {
+		filters["id"] = input_idpaciente
 		counter_filters += 1
 	}
 

@@ -35,7 +35,7 @@ func Update(c echo.Context) error {
 	}
 
 	//Find in the Storage
-	paciente_found, error_find := paciente_repository.Pg_FindOne(input_paciente.DocumentoIdentidad)
+	paciente_found, error_find := paciente_repository.Pg_FindOne("", input_paciente.DocumentoIdentidad)
 	if error_find != nil {
 		return c.JSON(400, &helpers.ResponseString{
 			Error: helpers.ErrorStructure{

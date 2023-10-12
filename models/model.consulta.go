@@ -20,9 +20,9 @@ type Consulta struct {
 	Orina                         string    `json:"orina"`
 	Deposiciones                  string    `json:"deposiciones"`
 	Temperatura                   float32   `json:"temperatura"`
-	PA                            string    `json:"pA"`
-	FC                            string    `json:"FC"`
-	FR                            string    `json:"FR"`
+	PA                            float32   `json:"pA"`
+	FC                            float32   `json:"FC"`
+	FR                            float32   `json:"FR"`
 	Peso                          float32   `json:"peso"`
 	Talla                         float32   `json:"talla"`
 	IMC                           float32   `json:"iMC"`
@@ -35,12 +35,12 @@ type Consulta struct {
 	Observaciones                 string    `json:"observaciones"`
 	NombreCompletoPaciente        string    `json:"nombreCompletoPaciente"`
 	IdPaciente                    string    `json:"idPaciente"`
+	SignosSintomas                string    `json:"signosSintomas"`
 }
 
 //Constructor
 
-func NewConsulta(id string, idHistoriaClinica string, idMedico string, descripcionEnfermedadPaciente string, tiempoEnfermedad int, apetito string, sed string, suenio string, estadoAnimo string, otroDetalle string, orina string, deposiciones string, temperatura float32, pA string, fC string, fR string, peso float32, talla float32, iMC float32, diagnostico string, tratamiento string, diagnosticoIA string, tratamientoIA string, examenesAuxiliares []string, proximaCita time.Time, observaciones string,
-) *Consulta {
+func NewConsulta(id string, idHistoriaClinica string, idMedico string, descripcionEnfermedadPaciente string, tiempoEnfermedad int, apetito string, sed string, suenio string, estadoAnimo string, otroDetalle string, orina string, deposiciones string, temperatura float32, pA float32, fC float32, fR float32, peso float32, talla float32, iMC float32, diagnostico string, tratamiento string, diagnosticoIA string, tratamientoIA string, examenesAuxiliares []string, proximaCita time.Time, observaciones string, signosSintomas string) *Consulta {
 	return &Consulta{
 		Id:                            id,
 		IdHistoriaClinica:             idHistoriaClinica,
@@ -69,11 +69,11 @@ func NewConsulta(id string, idHistoriaClinica string, idMedico string, descripci
 		ExamenesAuxiliares:            examenesAuxiliares,
 		ProximaCita:                   proximaCita,
 		Observaciones:                 observaciones,
+		SignosSintomas:                signosSintomas,
 	}
 }
 
-func UpdateConsulta(id string, idHistoriaClinica string, descripcionEnfermedadPaciente string, tiempoEnfermedad int, apetito string, sed string, suenio string, estadoAnimo string, otroDetalle string, orina string, deposiciones string, temperatura float32, pA string, fC string, fR string, peso float32, talla float32, iMC float32, diagnostico string, tratamiento string, diagnosticoIA string, tratamientoIA string, examenesAuxiliares []string, proximaCita time.Time, observaciones string,
-) *Consulta {
+func UpdateConsulta(id string, idHistoriaClinica string, descripcionEnfermedadPaciente string, tiempoEnfermedad int, apetito string, sed string, suenio string, estadoAnimo string, otroDetalle string, orina string, deposiciones string, temperatura float32, pA float32, fC float32, fR float32, peso float32, talla float32, iMC float32, diagnostico string, tratamiento string, diagnosticoIA string, tratamientoIA string, examenesAuxiliares []string, proximaCita time.Time, observaciones string, signosSintomas string) *Consulta {
 	return &Consulta{
 		Id:                            id,
 		IdHistoriaClinica:             idHistoriaClinica,
@@ -100,5 +100,6 @@ func UpdateConsulta(id string, idHistoriaClinica string, descripcionEnfermedadPa
 		ExamenesAuxiliares:            examenesAuxiliares,
 		ProximaCita:                   proximaCita,
 		Observaciones:                 observaciones,
+		SignosSintomas:                signosSintomas,
 	}
 }

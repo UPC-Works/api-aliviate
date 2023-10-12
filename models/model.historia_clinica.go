@@ -240,6 +240,7 @@ func NewHistoriaClinica(
 
 func UpdateHistoriaClinica(
 	id string,
+	idMedico string,
 	idPaciente string, estadoCivil int, gradoInstitucion int, ocupacion string, direccion string,
 	idDistrito int,
 	tuvoTuberculosis bool,
@@ -309,6 +310,7 @@ func UpdateHistoriaClinica(
 	tienePlanificacionSexual bool) *HistoriaClinica {
 	return &HistoriaClinica{
 		Id:                               id,
+		IdMedico:                         idMedico,
 		IdPaciente:                       idPaciente,
 		EstadoCivil:                      estadoCivil,
 		GradoInstitucion:                 gradoInstitucion,

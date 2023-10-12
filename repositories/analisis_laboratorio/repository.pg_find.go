@@ -33,18 +33,18 @@ func Pg_FindOne(input_idhistoriaclinica string) (models.AnalisisLaboratorio, err
 
 	//Define the query
 	q := `SELECT 
-	id,
-	id_historia_clinica,
-	colesterol,
-	trigliceridos,
-	colesterol_hdl,
-	colesterol_ldl,
-	colesterol_vldl,
-	riesgo1,
-	riesgo2,
-	glucosa,
-	hematrocito,
-	hemoglobina
+	COALESCE(id,''),
+	COALESCE(id_historia_clinica,''),
+	COALESCE(colesterol,0),
+	COALESCE(trigliceridos,0),
+	COALESCE(colesterol_hdl,0),
+	COALESCE(colesterol_ldl,0),
+	COALESCE(colesterol_vldl,0),
+	COALESCE(riesgo1,0),
+	COALESCE(riesgo2,0),
+	COALESCE(glucosa,0),
+	COALESCE(hematrocito,0),
+	COALESCE(hemoglobina,0)
 FROM AnalisisLaboratorio `
 	if counter_filters > 0 {
 		q += " WHERE "

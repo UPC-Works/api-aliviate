@@ -43,7 +43,8 @@ func Pg_Create(input_consulta *models.Consulta) error {
 		tratamiento_ia                 ,
 		examenes_auxiliares            ,
 		proxima_cita                   ,
-		observaciones                  
+		observaciones                 ,
+		sigos_sintomas 
 	) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27)`
 	_, err_query := db.Exec(ctx, query,
 		input_consulta.Id,

@@ -62,7 +62,8 @@ func Pg_FindOne(input_idhistoriaclinica string) (models.Consulta, error) {
 	co.id_medico                   ,
 	co.observaciones                  ,
 	concat(pa.nombre,' ',pa.apellido),
-	pa.id
+	pa.id,
+	co.sigos_sintomas
 	FROM Consulta AS co JOIN HistoriaClinica AS hc ON co.id_historia_clinica=hc.id JOIN Paciente AS pa ON hc.id_paciente=pa.id`
 	if counter_filters > 0 {
 		q += " WHERE "
@@ -103,7 +104,8 @@ func Pg_FindOne(input_idhistoriaclinica string) (models.Consulta, error) {
 		&oConsulta.IdMedico,
 		&oConsulta.Observaciones,
 		&oConsulta.NombreCompletoPaciente,
-		&oConsulta.IdPaciente)
+		&oConsulta.IdPaciente,
+		&oConsulta.SignosSintomas)
 
 	if error_find != nil {
 		return oConsulta, error_find
@@ -169,7 +171,8 @@ func Pg_FindMultiple(input_idhistoriaclinica string, input_documento_identidad i
 	concat(me.nombre,' ',me.apellido),
 	co.observaciones                  ,
 	concat(pa.nombre,' ',pa.apellido),
-	pa.id
+	pa.id,
+	co.sigos_sintomas
 FROM Consulta AS co JOIN HistoriaClinica AS hc ON co.id_historia_clinica=hc.id JOIN Paciente AS pa ON hc.id_paciente=pa.id JOIN Medico as me ON hc.id_medico=me.id`
 	if counter_filters > 0 {
 		q += " WHERE "
@@ -222,7 +225,8 @@ FROM Consulta AS co JOIN HistoriaClinica AS hc ON co.id_historia_clinica=hc.id J
 			&oConsulta.NombreMedico,
 			&oConsulta.Observaciones,
 			&oConsulta.NombreCompletoPaciente,
-			&oConsulta.IdPaciente)
+			&oConsulta.IdPaciente,
+			&oConsulta.SignosSintomas)
 		oListConsulta = append(oListConsulta, oConsulta)
 	}
 

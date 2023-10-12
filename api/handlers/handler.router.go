@@ -18,6 +18,7 @@ import (
 	historia_clinica_service "github.com/UPC-Works/api-aliviate/services/historia_clinica"
 	medico_service "github.com/UPC-Works/api-aliviate/services/medico"
 	paciente_service "github.com/UPC-Works/api-aliviate/services/paciente"
+	prediccion_service "github.com/UPC-Works/api-aliviate/services/prediccion"
 )
 
 func HandlerRouters() {
@@ -76,6 +77,10 @@ func HandlerRouters() {
 	router_analisis_laboratorio.POST("", analisis_laboratorio_service.Add)
 	router_analisis_laboratorio.PUT("", analisis_laboratorio_service.Update)
 	router_analisis_laboratorio.GET("/:id_historia_clinica", analisis_laboratorio_service.GetOne)
+
+	//V1 - PREDICCION
+	router_prediccion := version_1.Group("/prediccion", middleware_api.Auth)
+	router_prediccion.POST("/prediccion", prediccion_service.Predecir)
 
 	//Open the port
 	PORT := os.Getenv("PORT")

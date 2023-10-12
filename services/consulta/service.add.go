@@ -36,7 +36,7 @@ func Add(c echo.Context) error {
 	}
 
 	//Storage the Consulta
-	new_consulta := models.NewConsulta(uuid.New().String(), input_consulta.IdHistoriaClinica, input_consulta.IdMedico, input_consulta.DescripcionEnfermedadPaciente, input_consulta.TiempoEnfermedad, input_consulta.Apetito, input_consulta.Sed, input_consulta.Suenio, input_consulta.EstadoAnimo, input_consulta.OtroDetalle, input_consulta.Orina, input_consulta.Deposiciones, input_consulta.Temperatura, input_consulta.PA, input_consulta.FC, input_consulta.FR, input_consulta.Peso, input_consulta.Talla, input_consulta.IMC, input_consulta.Diagnostico, input_consulta.Tratamiento, input_consulta.DiagnosticoIA, input_consulta.TratamientoIA, input_consulta.ExamenesAuxiliares, input_consulta.ProximaCita, input_consulta.Observaciones)
+	new_consulta := models.NewConsulta(uuid.New().String(), input_consulta.IdHistoriaClinica, input_consulta.IdMedico, input_consulta.DescripcionEnfermedadPaciente, input_consulta.TiempoEnfermedad, input_consulta.Apetito, input_consulta.Sed, input_consulta.Suenio, input_consulta.EstadoAnimo, input_consulta.OtroDetalle, input_consulta.Orina, input_consulta.Deposiciones, input_consulta.Temperatura, input_consulta.PA, input_consulta.FC, input_consulta.FR, input_consulta.Peso, input_consulta.Talla, input_consulta.IMC, input_consulta.Diagnostico, input_consulta.Tratamiento, input_consulta.DiagnosticoIA, input_consulta.TratamientoIA, input_consulta.ExamenesAuxiliares, input_consulta.ProximaCita, input_consulta.Observaciones, input_consulta.SignosSintomas)
 	error_create_consulta := consulta_repository.Pg_Create(new_consulta)
 	if error_create_consulta != nil {
 		return c.JSON(500, &helpers.ResponseString{

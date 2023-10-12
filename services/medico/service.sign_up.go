@@ -1,6 +1,7 @@
 package medico
 
 import (
+	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 
 	helpers "github.com/UPC-Works/api-aliviate/helpers"
@@ -50,7 +51,13 @@ func SignUp(c echo.Context) error {
 	encrypted_pass, _ := private_services.EncryptPassword(input_medico.Contrasenia)
 
 	//Storage the New Medico
-	new_medico := models.NewMedico(input_medico.Id, input_medico.Nombre, input_medico.Apellido, input_medico.Colegiatura, input_medico.Correo, encrypted_pass, input_medico.Direccion, input_medico.Especialidad)
+	var id_medico string
+	if input_medico.Id == "" {
+		id_medico = uuid.New().String()
+	} else {
+		id_medico = input_medico.Id
+	}
+	new_medico := models.NewMedico(id_medico, input_medico.Nombre, input_medico.Apellido, input_medico.Colegiatura, input_medico.Correo, encrypted_pass, input_medico.Direccion, input_medico.Especialidad)
 	error_create_medico := medico_repository.Pg_Create(new_medico)
 	if error_create_medico != nil {
 		return c.JSON(500, &helpers.ResponseString{
