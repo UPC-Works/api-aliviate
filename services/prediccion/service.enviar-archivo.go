@@ -38,7 +38,7 @@ func EnviarArchivo(nombre_archivo string) []models.PrediccionEnfermedad {
 	writer.Close()
 
 	// Realizar una solicitud POST al endpoint
-	url := "http://72.44.53.105:1440/subir-archivo" // Reemplaza con la URL de tu endpoint
+	url := " https://c6a8-181-67-74-103.ngrok-free.app/subir-archivo" // Reemplaza con la URL de tu endpoint
 	req, err := http.NewRequest("POST", url, &requestBody)
 	if err != nil {
 		fmt.Println(err)
