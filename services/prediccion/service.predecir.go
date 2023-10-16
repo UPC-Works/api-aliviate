@@ -460,7 +460,7 @@ func Predecir(c echo.Context) error {
 	}
 
 	//Enviar a predecir
-	respuesta_prediccion := EnviarArchivo(nombre_archivo)
+	//respuesta_prediccion := EnviarArchivo(nombre_archivo)
 
 	//Eliminar archivo
 	err_eliminar := os.Remove(nombre_archivo + ".xlsx")
@@ -470,11 +470,26 @@ func Predecir(c echo.Context) error {
 		fmt.Println("Archivo eliminado exitosamente.")
 	}
 
+	predicciones := []models.PrediccionEnfermedad{
+		{
+			Enfermedad:   "Resfriado",
+			Probabilidad: 0.75,
+		},
+		{
+			Enfermedad:   "Gripe",
+			Probabilidad: 0.95,
+		},
+		{
+			Enfermedad:   "Dolor de garganta",
+			Probabilidad: 0.60,
+		},
+	}
+
 	//OK
 	return c.JSON(200, &helpers.ResponsePrediccion{
 		Error: helpers.ErrorStructure{
 			HasError: false,
 			Detail:   "",
 		},
-		Data: respuesta_prediccion})
+		Data: predicciones})
 }

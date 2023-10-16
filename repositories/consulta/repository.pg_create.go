@@ -74,6 +74,7 @@ func Pg_Create(input_consulta *models.Consulta) error {
 		input_consulta.ExamenesAuxiliares,
 		input_consulta.ProximaCita,
 		input_consulta.Observaciones,
+		input_consulta.SignosSintomas,
 	)
 
 	if err_query != nil {
