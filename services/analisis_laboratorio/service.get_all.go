@@ -12,13 +12,14 @@ import (
 func GetAll(c echo.Context) error {
 
 	//Get the filters from the client
+	idHistoriaClinica := c.Request().URL.Query().Get("idHistoriaClinica")
 	limit_string := c.Request().URL.Query().Get("limit")
 	offset_string := c.Request().URL.Query().Get("offset")
 	limit, _ := strconv.Atoi(limit_string)
 	offset, _ := strconv.Atoi(offset_string)
 
 	//Get all analisis_laboratorio
-	analisis_laboratorio, _ := analisis_laboratorio_repository.Pg_FindMultiple(limit, offset)
+	analisis_laboratorio, _ := analisis_laboratorio_repository.Pg_FindMultiple(idHistoriaClinica, limit, offset)
 
 	//OK
 	return c.JSON(200, &helpers.ResponseListAnalisisLaboratorio{

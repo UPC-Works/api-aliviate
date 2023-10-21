@@ -77,7 +77,6 @@ func HandlerRouters() {
 	router_analisis_laboratorio.POST("", analisis_laboratorio_service.Add)
 	router_analisis_laboratorio.PUT("", analisis_laboratorio_service.Update)
 	router_analisis_laboratorio.GET("", analisis_laboratorio_service.GetAll)
-	router_analisis_laboratorio.GET("/:id_historia_clinica", analisis_laboratorio_service.GetOne)
 
 	//V1 - PREDICCION
 	router_prediccion := version_1.Group("/prediccion")

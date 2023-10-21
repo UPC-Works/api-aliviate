@@ -79,7 +79,7 @@ FROM AnalisisLaboratorio `
 	return oAnalisisLaboratorio, nil
 }
 
-func Pg_FindMultiple(input_limit int, input_offset int) ([]models.AnalisisLaboratorio, error) {
+func Pg_FindMultiple(input_idhistoriaclinica string, input_limit int, input_offset int) ([]models.AnalisisLaboratorio, error) {
 
 	//Initialization
 	var oListAnalisisLaboratorio []models.AnalisisLaboratorio
@@ -92,23 +92,40 @@ func Pg_FindMultiple(input_limit int, input_offset int) ([]models.AnalisisLabora
 	//Start the connection
 	db := configs.Conn_Pg_DB()
 
+	//Define the filters
+	filters := map[string]interface{}{}
+	counter_filters := 0
+	if input_idhistoriaclinica != "" {
+		filters["id_historia_clinica"] = input_idhistoriaclinica
+		counter_filters += 1
+	}
+
 	//Define the query
 	q := `SELECT 
-	COALESCE(id,''),
-	COALESCE(id_historia_clinica,''),
-	COALESCE(colesterol,0),
-	COALESCE(trigliceridos,0),
-	COALESCE(colesterol_hdl,0),
-	COALESCE(colesterol_ldl,0),
-	COALESCE(colesterol_vldl,0),
-	COALESCE(riesgo1,0),
-	COALESCE(riesgo2,0),
-	COALESCE(glucosa,0),
-	COALESCE(hematrocito,0),
-	COALESCE(hemoglobina,0)
-FROM AnalisisLaboratorio `
+		COALESCE(id,''),
+		COALESCE(id_historia_clinica,''),
+		COALESCE(colesterol,0),
+		COALESCE(trigliceridos,0),
+		COALESCE(colesterol_hdl,0),
+		COALESCE(colesterol_ldl,0),
+		COALESCE(colesterol_vldl,0),
+		COALESCE(riesgo1,0),
+		COALESCE(riesgo2,0),
+		COALESCE(glucosa,0),
+		COALESCE(hematrocito,0),
+		COALESCE(hemoglobina,0)
+	FROM AnalisisLaboratorio `
 
-	rows, error_find := db.Query(ctx, q+" ORDER BY fecha_registro DESC LIMIT $1 OFFSET $2", input_limit, input_offset)
+	if counter_filters > 0 {
+		q += " WHERE "
+		clausulas := make([]string, 0)
+		for key, value := range filters {
+			clausulas = append(clausulas, fmt.Sprintf("%s = '%s'", key, value))
+		}
+		q += strings.Join(clausulas, " AND ")
+
+	}
+	rows, error_find := db.Query(ctx, q+" LIMIT $1 OFFSET $2", input_limit, input_offset)
 	if error_find != nil {
 		return oListAnalisisLaboratorio, error_find
 	}
