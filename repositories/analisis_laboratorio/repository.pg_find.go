@@ -78,3 +78,63 @@ FROM AnalisisLaboratorio `
 	//Return one analisis_laboratorio
 	return oAnalisisLaboratorio, nil
 }
+
+func Pg_FindMultiple(input_limit int, input_offset int) ([]models.AnalisisLaboratorio, error) {
+
+	//Initialization
+	var oListAnalisisLaboratorio []models.AnalisisLaboratorio
+
+	//Context timing
+	ctx, cancel := context.WithTimeout(context.Background(), 8*time.Second)
+	//Cancel context
+	defer cancel()
+
+	//Start the connection
+	db := configs.Conn_Pg_DB()
+
+	//Define the query
+	q := `SELECT 
+	COALESCE(id,''),
+	COALESCE(id_historia_clinica,''),
+	COALESCE(colesterol,0),
+	COALESCE(trigliceridos,0),
+	COALESCE(colesterol_hdl,0),
+	COALESCE(colesterol_ldl,0),
+	COALESCE(colesterol_vldl,0),
+	COALESCE(riesgo1,0),
+	COALESCE(riesgo2,0),
+	COALESCE(glucosa,0),
+	COALESCE(hematrocito,0),
+	COALESCE(hemoglobina,0)
+FROM AnalisisLaboratorio `
+
+	rows, error_find := db.Query(ctx, q+" ORDER BY fecha_registro DESC LIMIT $1 OFFSET $2", input_limit, input_offset)
+	if error_find != nil {
+		return oListAnalisisLaboratorio, error_find
+	}
+	//Scan the row
+	for rows.Next() {
+		var oAnalisisLaboratorio models.AnalisisLaboratorio
+		rows.Scan(
+			&oAnalisisLaboratorio.Id,
+			&oAnalisisLaboratorio.IdHistoriaClinica,
+			&oAnalisisLaboratorio.Colesterol,
+			&oAnalisisLaboratorio.Trigliceridos,
+			&oAnalisisLaboratorio.ColesterolHdl,
+			&oAnalisisLaboratorio.ColesterolLdl,
+			&oAnalisisLaboratorio.ColesterolVldl,
+			&oAnalisisLaboratorio.Riesgo1,
+			&oAnalisisLaboratorio.Riesgo2,
+			&oAnalisisLaboratorio.Glucosa,
+			&oAnalisisLaboratorio.Hematrocito,
+			&oAnalisisLaboratorio.Hemoglobina,
+		)
+		oListAnalisisLaboratorio = append(oListAnalisisLaboratorio, oAnalisisLaboratorio)
+	}
+	if error_find != nil {
+		return oListAnalisisLaboratorio, error_find
+	}
+
+	//Return all analisis_laboratorio
+	return oListAnalisisLaboratorio, nil
+}
