@@ -82,7 +82,7 @@ type HistoriaClinica struct {
 }
 
 type HistoriaClinica_View struct {
-	Id                         string    `json:"id "`
+	Id                         string    `json:"id"`
 	FechaRegistro              time.Time `json:"fechaRegistro"`
 	IdPaciente                 string    `json:"idPaciente"`
 	DocumentoIdentidadPaciente int       `json:"documentoIdentidadPaciente"`
