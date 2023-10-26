@@ -28,7 +28,7 @@ func Pg_UpdateOne(input_analisis_laboratorio *models.AnalisisLaboratorio) error 
 	hematrocito=$9,
 	hemoglobina=$10
 	WHERE id=$11`
-	_, err_query := db.Exec(ctx, query, input_analisis_laboratorio.Colesterol, input_analisis_laboratorio.Trigliceridos, input_analisis_laboratorio.ColesterolHdl, input_analisis_laboratorio.ColesterolLdl, input_analisis_laboratorio.ColesterolVldl, input_analisis_laboratorio.Riesgo1, input_analisis_laboratorio.Riesgo2, input_analisis_laboratorio.Glucosa, input_analisis_laboratorio.Hematrocito, input_analisis_laboratorio.Hemoglobina)
+	_, err_query := db.Exec(ctx, query, input_analisis_laboratorio.Colesterol, input_analisis_laboratorio.Trigliceridos, input_analisis_laboratorio.ColesterolHdl, input_analisis_laboratorio.ColesterolLdl, input_analisis_laboratorio.ColesterolVldl, input_analisis_laboratorio.Riesgo1, input_analisis_laboratorio.Riesgo2, input_analisis_laboratorio.Glucosa, input_analisis_laboratorio.Hematrocito, input_analisis_laboratorio.Hemoglobina, input_analisis_laboratorio.Id)
 
 	if err_query != nil {
 		return err_query
