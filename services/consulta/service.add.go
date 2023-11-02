@@ -7,6 +7,7 @@ import (
 	helpers "github.com/UPC-Works/api-aliviate/helpers"
 	models "github.com/UPC-Works/api-aliviate/models"
 	consulta_repository "github.com/UPC-Works/api-aliviate/repositories/consulta"
+	diagnostico_ia_repository "github.com/UPC-Works/api-aliviate/repositories/diagnostico_ia"
 )
 
 func Add(c echo.Context) error {
@@ -43,6 +44,17 @@ func Add(c echo.Context) error {
 			Error: helpers.ErrorStructure{
 				HasError: true,
 				Detail:   error_create_consulta.Error(),
+			},
+			Data: ""})
+	}
+
+	//Storage predictions
+	error_create_prediccion := diagnostico_ia_repository.Pg_Create(new_consulta)
+	if error_create_prediccion != nil {
+		return c.JSON(500, &helpers.ResponseString{
+			Error: helpers.ErrorStructure{
+				HasError: true,
+				Detail:   error_create_prediccion.Error(),
 			},
 			Data: ""})
 	}

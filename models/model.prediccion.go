@@ -5,6 +5,7 @@ package models
 type PrediccionEnfermedad struct {
 	Enfermedad   string  `json:"enfermedad"`
 	Probabilidad float32 `json:"probabilidad"`
+	EsAceptado   bool    `json:"esAceptado"`
 }
 
 type PrediccionTratamiento struct {

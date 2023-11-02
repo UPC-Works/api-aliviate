@@ -9,6 +9,7 @@ import (
 	helpers "github.com/UPC-Works/api-aliviate/helpers"
 	models "github.com/UPC-Works/api-aliviate/models"
 	historia_clinica_repository "github.com/UPC-Works/api-aliviate/repositories/historia_clinica"
+	paciente_repository "github.com/UPC-Works/api-aliviate/repositories/paciente"
 )
 
 func Add(c echo.Context) error {
@@ -28,6 +29,20 @@ func Add(c echo.Context) error {
 			Error: helpers.ErrorStructure{
 				HasError: true,
 				Detail:   "Check the structure or the type of the value",
+			},
+			Data: ""})
+	}
+
+	//Get legal identity
+	paciente_found, _ := paciente_repository.Pg_FindOne(input_historia_clinica.IdPaciente, 0)
+
+	//Verify if the DNI already exists
+	historia_clinica_found, _ := historia_clinica_repository.Pg_FindMultiple("", paciente_found.DocumentoIdentidad, 1, 0)
+	if len(historia_clinica_found) > 0 {
+		return c.JSON(400, &helpers.ResponseString{
+			Error: helpers.ErrorStructure{
+				HasError: true,
+				Detail:   "This patient has been registered before",
 			},
 			Data: ""})
 	}
