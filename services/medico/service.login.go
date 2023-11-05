@@ -46,7 +46,7 @@ func Login(c echo.Context) error {
 	}
 
 	//Find in the Storage
-	medico_found, error_findbyemail := medico_repository.Pg_FindOne(input_medico.Correo)
+	medico_found, error_findbyemail := medico_repository.Pg_FindOne("", input_medico.Correo)
 	if error_findbyemail != nil {
 		return c.JSON(400, &helpers.ResponseJwt{
 			Error: helpers.ErrorStructure{

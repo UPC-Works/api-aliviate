@@ -37,7 +37,7 @@ func SignUp(c echo.Context) error {
 	}
 
 	//Validation if the email already exist
-	medico_found, _ := medico_repository.Pg_FindOne(input_medico.Correo)
+	medico_found, _ := medico_repository.Pg_FindOne("", input_medico.Correo)
 	if medico_found.Id != "" {
 		return c.JSON(403, &helpers.ResponseString{
 			Error: helpers.ErrorStructure{

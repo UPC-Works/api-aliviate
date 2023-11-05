@@ -10,7 +10,7 @@ import (
 	models "github.com/UPC-Works/api-aliviate/models"
 )
 
-func Pg_FindOne(input_email string) (models.Medico, error) {
+func Pg_FindOne(input_id string, input_email string) (models.Medico, error) {
 
 	//Initialization
 	var oMedico models.Medico
@@ -18,6 +18,10 @@ func Pg_FindOne(input_email string) (models.Medico, error) {
 	//Define the filters
 	filters := map[string]interface{}{}
 	counter_filters := 0
+	if input_id != "" {
+		filters["id"] = input_id
+		counter_filters += 1
+	}
 	if input_email != "" {
 		filters["correo"] = input_email
 		counter_filters += 1
