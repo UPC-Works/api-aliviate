@@ -141,7 +141,7 @@ func Authentication(c echo.Context) error {
 
 		if error_get_re != nil {
 			//Get the last medico data updated
-			medico_updated, error_find_medico := medico_repository.Pg_FindOne(claims.Correo)
+			medico_updated, error_find_medico := medico_repository.Pg_FindOne("", claims.Correo)
 			if error_find_medico != nil {
 				return c.JSON(500, &helpers.ResponseAuth{
 					Error: helpers.ErrorStructure{
