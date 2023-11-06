@@ -11,7 +11,6 @@ import (
 
 	helpers "github.com/UPC-Works/api-aliviate/helpers"
 	models "github.com/UPC-Works/api-aliviate/models"
-	analisis_laboratorio_repository "github.com/UPC-Works/api-aliviate/repositories/analisis_laboratorio"
 	historia_clinica_repository "github.com/UPC-Works/api-aliviate/repositories/historia_clinica"
 	paciente_repository "github.com/UPC-Works/api-aliviate/repositories/paciente"
 )
@@ -65,7 +64,7 @@ func Predecir(c echo.Context) error {
 	}
 
 	//Get one analisis_laboratorio
-	analisis_laboratorio, error_find_analisis_laboratorio := analisis_laboratorio_repository.Pg_FindOne(input_consulta.IdHistoriaClinica)
+	/*analisis_laboratorio, error_find_analisis_laboratorio := analisis_laboratorio_repository.Pg_FindOne(input_consulta.IdHistoriaClinica)
 	if error_find_analisis_laboratorio != nil {
 		return c.JSON(500, &helpers.ResponsePrediccion{
 			Error: helpers.ErrorStructure{
@@ -73,7 +72,7 @@ func Predecir(c echo.Context) error {
 				Detail:   "Error al buscar el analisis de laboratorio, detalles:" + error_find_analisis_laboratorio.Error(),
 			},
 			Data: nil})
-	}
+	}*/
 
 	// Crear un nuevo archivo Excel
 	file := xlsx.NewFile()
@@ -414,25 +413,25 @@ func Predecir(c echo.Context) error {
 	cell = dataRow.AddCell()
 	cell.Value = map[bool]string{true: "Si", false: "No"}[historia_clinica.TieneHabDrogas]
 	cell = dataRow.AddCell()
-	cell.SetFloat(float64(analisis_laboratorio.Hematrocito))
+	//cell.SetFloat(float64(analisis_laboratorio.Hematrocito))
 	cell = dataRow.AddCell()
-	cell.SetFloat(float64(analisis_laboratorio.Hemoglobina))
+	//cell.SetFloat(float64(analisis_laboratorio.Hemoglobina))
 	cell = dataRow.AddCell()
-	cell.SetFloat(float64(analisis_laboratorio.Colesterol))
+	//cell.SetFloat(float64(analisis_laboratorio.Colesterol))
 	cell = dataRow.AddCell()
-	cell.SetFloat(float64(analisis_laboratorio.Trigliceridos))
+	//cell.SetFloat(float64(analisis_laboratorio.Trigliceridos))
 	cell = dataRow.AddCell()
-	cell.SetFloat(float64(analisis_laboratorio.ColesterolHdl))
+	//cell.SetFloat(float64(analisis_laboratorio.ColesterolHdl))
 	cell = dataRow.AddCell()
-	cell.SetFloat(float64(analisis_laboratorio.ColesterolLdl))
+	//cell.SetFloat(float64(analisis_laboratorio.ColesterolLdl))
 	cell = dataRow.AddCell()
-	cell.SetFloat(float64(analisis_laboratorio.ColesterolVldl))
+	//cell.SetFloat(float64(analisis_laboratorio.ColesterolVldl))
 	cell = dataRow.AddCell()
-	cell.SetFloat(float64(analisis_laboratorio.Riesgo1))
+	//cell.SetFloat(float64(analisis_laboratorio.Riesgo1))
 	cell = dataRow.AddCell()
-	cell.SetFloat(float64(analisis_laboratorio.Riesgo2))
+	//cell.SetFloat(float64(analisis_laboratorio.Riesgo2))
 	cell = dataRow.AddCell()
-	cell.SetFloat(float64(analisis_laboratorio.Glucosa))
+	//cell.SetFloat(float64(analisis_laboratorio.Glucosa))
 	cell = dataRow.AddCell()
 	cell.SetFloat(float64(input_consulta.PA))
 	cell = dataRow.AddCell()

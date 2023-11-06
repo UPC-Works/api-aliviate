@@ -11,7 +11,9 @@ import (
 
 	middleware_api "github.com/UPC-Works/api-aliviate/api/middlewares"
 	admin_service "github.com/UPC-Works/api-aliviate/services/admin"
-	analisis_laboratorio_service "github.com/UPC-Works/api-aliviate/services/analisis_laboratorio"
+	analisis_historia_service "github.com/UPC-Works/api-aliviate/services/analisis_historia"
+	analisis_laboratorio_campo_service "github.com/UPC-Works/api-aliviate/services/analisis_laboratorio_campo"
+	analisis_laboratorio_codigo_service "github.com/UPC-Works/api-aliviate/services/analisis_laboratorio_codigo"
 	auth_service "github.com/UPC-Works/api-aliviate/services/auth"
 	consulta_service "github.com/UPC-Works/api-aliviate/services/consulta"
 	establecimiento_service "github.com/UPC-Works/api-aliviate/services/establecimiento"
@@ -41,6 +43,10 @@ func HandlerRouters() {
 	router_admin.POST("/sign-up", admin_service.SignUp)
 	router_admin.POST("/login", admin_service.Login)
 	router_admin.POST("/assign-est-medico", admin_service.AsignarEstablecimiento)
+	router_admin.POST("/create-analisis", analisis_laboratorio_codigo_service.Add)
+	router_admin.GET("/list-analisis", analisis_laboratorio_codigo_service.GetAll)
+	router_admin.POST("/create-analisis-campo", analisis_laboratorio_campo_service.Add)
+	router_admin.GET("/list-analisis-campo", analisis_laboratorio_campo_service.GetAll)
 
 	//V1 - ESTABLECIMIENTO
 	router_establecimiento := version_1.Group("/establecimiento", middleware_api.Auth)
@@ -56,6 +62,7 @@ func HandlerRouters() {
 	router_historia := version_1.Group("/historia_clinica", middleware_api.Auth)
 	router_historia.POST("", historia_clinica_service.Add)
 	router_historia.GET("", historia_clinica_service.GetAll)
+	router_historia.GET("/modificaciones", historia_clinica_service.GetAll)
 	router_historia.PUT("", historia_clinica_service.Update)
 	router_historia.GET("/:id_historia_clinica", historia_clinica_service.GetOne)
 
@@ -74,9 +81,10 @@ func HandlerRouters() {
 
 	//V1 - ANALISIS LABORATORIO
 	router_analisis_laboratorio := version_1.Group("/analisis_laboratorio", middleware_api.Auth)
-	router_analisis_laboratorio.POST("", analisis_laboratorio_service.Add)
-	router_analisis_laboratorio.PUT("", analisis_laboratorio_service.Update)
-	router_analisis_laboratorio.GET("", analisis_laboratorio_service.GetAll)
+	router_analisis_laboratorio.GET("/list-analisis", analisis_laboratorio_codigo_service.GetAll)
+	router_analisis_laboratorio.GET("/list-analisis-campo", analisis_laboratorio_campo_service.GetAll)
+	router_analisis_laboratorio.POST("/register-analisis-historia", analisis_historia_service.Add)
+	router_analisis_laboratorio.POST("/list-analisis-historia", analisis_historia_service.GetAll)
 
 	//V1 - PREDICCION
 	router_prediccion := version_1.Group("/prediccion")

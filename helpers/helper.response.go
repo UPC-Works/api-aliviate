@@ -57,20 +57,26 @@ type ResponseHistoriaClinica struct {
 	Data   models.HistoriaClinica `json:"data"`
 }
 
-type ResponseAnalisisLaboratorio struct {
-	Status int                        `json:"status,omitempty"`
-	Error  ErrorStructure             `json:"error"`
-	Data   models.AnalisisLaboratorio `json:"data"`
-}
-
 type ResponsePrediccion struct {
 	Status int                           `json:"status,omitempty"`
 	Error  ErrorStructure                `json:"error"`
 	Data   []models.PrediccionEnfermedad `json:"data"`
 }
 
-type ResponseListAnalisisLaboratorio struct {
-	Status int                          `json:"status,omitempty"`
-	Error  ErrorStructure               `json:"error"`
-	Data   []models.AnalisisLaboratorio `json:"data"`
+type ResponseListAnalisisLaboratorioCodigo struct {
+	Status int                                `json:"status,omitempty"`
+	Error  ErrorStructure                     `json:"error"`
+	Data   []models.AnalisisLaboratorioCodigo `json:"data"`
+}
+
+type ResponseListAnalisisLaboratorioCampo struct {
+	Status int                               `json:"status,omitempty"`
+	Error  ErrorStructure                    `json:"error"`
+	Data   []models.AnalisisLaboratorioCampo `json:"data"`
+}
+
+type ResponseListAnalisisHistoria struct {
+	Status int                       `json:"status,omitempty"`
+	Error  ErrorStructure            `json:"error"`
+	Data   []models.AnalisisHistoria `json:"data"`
 }

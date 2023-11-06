@@ -1,4 +1,4 @@
-package establecimiento
+package diagnostico_ia
 
 import (
 	"context"
