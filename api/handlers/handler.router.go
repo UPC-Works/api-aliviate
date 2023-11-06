@@ -16,6 +16,7 @@ import (
 	analisis_laboratorio_codigo_service "github.com/UPC-Works/api-aliviate/services/analisis_laboratorio_codigo"
 	auth_service "github.com/UPC-Works/api-aliviate/services/auth"
 	consulta_service "github.com/UPC-Works/api-aliviate/services/consulta"
+	documento_historia_service "github.com/UPC-Works/api-aliviate/services/documento_historia"
 	establecimiento_service "github.com/UPC-Works/api-aliviate/services/establecimiento"
 	historia_clinica_service "github.com/UPC-Works/api-aliviate/services/historia_clinica"
 	medico_service "github.com/UPC-Works/api-aliviate/services/medico"
@@ -85,6 +86,11 @@ func HandlerRouters() {
 	router_analisis_laboratorio.GET("/list-analisis-campo", analisis_laboratorio_campo_service.GetAll)
 	router_analisis_laboratorio.POST("/register-analisis-historia", analisis_historia_service.Add)
 	router_analisis_laboratorio.POST("/list-analisis-historia", analisis_historia_service.GetAll)
+
+	//V1 - DOCUMENTOS
+	router_documentos := version_1.Group("/documentos", middleware_api.Auth)
+	router_documentos.POST("/:idhistoriaclinica", documento_historia_service.Add)
+	router_documentos.GET("", documento_historia_service.GetAll)
 
 	//V1 - PREDICCION
 	router_prediccion := version_1.Group("/prediccion")

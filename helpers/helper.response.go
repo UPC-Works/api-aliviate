@@ -80,3 +80,9 @@ type ResponseListAnalisisHistoria struct {
 	Error  ErrorStructure            `json:"error"`
 	Data   []models.AnalisisHistoria `json:"data"`
 }
+
+type ResponseListDocumentos struct {
+	Status int                         `json:"status,omitempty"`
+	Error  ErrorStructure              `json:"error"`
+	Data   []models.DocumentosHistoria `json:"data"`
+}
