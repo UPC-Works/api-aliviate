@@ -28,7 +28,7 @@ func Pg_Create(input_consulta *models.Consulta) error {
 
 	db := configs.Conn_Pg_DB()
 
-	query := `INSERT INTO DiagnosticoIA (id,id_consulta,enfermedad,probabilidad,es_aceptado) VALUES (select * from 
+	query := `INSERT INTO DiagnosticoIA (id,id_consulta,enfermedad,probabilidad,es_aceptado) (select * from 
 		unnest($1::VARCHAR(50)[], $2::VARCHAR(50)[],$3::VARCHAR(50)[],$4::decimal(10,2)[],$5::bool[]))`
 	_, err_query := db.Exec(ctx, query, id_pg, id_pg, id_consulta_pg, enfermedad_pg, probabilidad_pg, es_aceptado_pg)
 

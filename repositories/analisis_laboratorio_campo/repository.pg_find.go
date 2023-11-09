@@ -59,6 +59,7 @@ func Pg_FindMultiple(input_id_analisis int) ([]models.AnalisisLaboratorioCampo, 
 			&oAnalisisLaboratorioCampo.CampoJson,
 			&oAnalisisLaboratorioCampo.Tipo,
 		)
+		oAnalisisLaboratorioCampo.Requerido = true
 		oListAnalisisLaboratorioCampo = append(oListAnalisisLaboratorioCampo, oAnalisisLaboratorioCampo)
 	}
 	if error_find != nil {

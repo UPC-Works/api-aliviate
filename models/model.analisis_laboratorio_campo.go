@@ -8,4 +8,5 @@ type AnalisisLaboratorioCampo struct {
 	Campo      string `json:"campo"`
 	CampoJson  string `json:"campoJson"`
 	Tipo       string `json:"tipo"`
+	Requerido  bool   `json:"requerido"`
 }
