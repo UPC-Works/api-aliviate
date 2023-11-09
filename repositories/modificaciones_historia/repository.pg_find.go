@@ -47,7 +47,7 @@ FROM ModificacionesHistoria `
 		q += strings.Join(clausulas, " AND ")
 
 	}
-	rows, error_find := db.Query(ctx, q+" ORDER BY actualizadoEl DESC")
+	rows, error_find := db.Query(ctx, q+" ORDER BY actualizado_el DESC")
 	if error_find != nil {
 		return oListModificacionesHistorias, error_find
 	}

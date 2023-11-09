@@ -1,6 +1,7 @@
 package config
 
 import (
+	"log"
 	"os"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -8,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
+	"github.com/joho/godotenv"
 )
 
 var S3 *S3Client
@@ -23,6 +25,12 @@ type S3Client struct {
 }
 
 func (t *S3Client) NewSession() error {
+
+	// Carga las variables de entorno desde el archivo .env.local
+	err := godotenv.Load(".env.local")
+	if err != nil {
+		log.Fatalf("Error al cargar el archivo .env.local: %v", err)
+	}
 
 	endpoint := "https://sfo3.digitaloceanspaces.com"
 	region := "us-east-1"

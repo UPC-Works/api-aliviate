@@ -3,8 +3,8 @@ package models
 // Model
 
 type AnalisisHistoria struct {
-	IdHistoriaClinica string  `json:"id"`
-	IdAnalisisCampo   int     `json:"idAnalisis"`
+	IdHistoriaClinica string  `json:"idHistoriaClinica"`
+	IdAnalisisCampo   int     `json:"idAnalisisCampo"`
 	Valor             float32 `json:"valor"`
 }
 

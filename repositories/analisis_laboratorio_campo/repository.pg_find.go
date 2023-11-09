@@ -18,7 +18,7 @@ func Pg_FindMultiple(input_id_analisis int) ([]models.AnalisisLaboratorioCampo, 
 	//Define the filters
 	filters := map[string]interface{}{}
 	counter_filters := 0
-	if input_id_analisis == 0 {
+	if input_id_analisis != 0 {
 		filters["id_analisis"] = input_id_analisis
 		counter_filters += 1
 	}
@@ -48,6 +48,7 @@ func Pg_FindMultiple(input_id_analisis int) ([]models.AnalisisLaboratorioCampo, 
 	if error_find != nil {
 		return oListAnalisisLaboratorioCampo, error_find
 	}
+
 	//Scan the row
 	for rows.Next() {
 		var oAnalisisLaboratorioCampo models.AnalisisLaboratorioCampo

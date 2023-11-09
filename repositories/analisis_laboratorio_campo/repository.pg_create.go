@@ -2,6 +2,7 @@ package analisis_laboratorio_campo
 
 import (
 	"context"
+	"log"
 	"time"
 
 	configs "github.com/UPC-Works/api-aliviate/configs"
@@ -20,13 +21,18 @@ func Pg_Create(input_analisis_lab_campos []*models.AnalisisLaboratorioCampo) err
 		tipo_pg = append(tipo_pg, input.Tipo)
 	}
 
+	log.Println("1--------->", id_analisis_pg)
+	log.Println("2--------->", campo_pg)
+	log.Println("3--------->", campo_json_pg)
+	log.Println("4--------->", tipo_pg)
+
 	//Context time limit
 	ctx, cancel := context.WithTimeout(context.Background(), 8*time.Second)
 	defer cancel()
 
 	db := configs.Conn_Pg_DB()
 
-	query := `INSERT INTO AnalisisLaboratorioCampo (id_analisis,campo,campos_json,tipo) VALUES (select * from 
+	query := `INSERT INTO AnalisisLaboratorioCampo (id_analisis,campo,campos_json,tipo) (select * from 
 		unnest($1::integer[],$2::VARCHAR(50)[], $3::VARCHAR(50)[], $4::VARCHAR(50)[]))`
 	_, err_query := db.Exec(ctx, query, id_analisis_pg, campo_pg, campo_json_pg, tipo_pg)
 

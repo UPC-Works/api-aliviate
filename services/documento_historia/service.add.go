@@ -97,7 +97,7 @@ func Add(c echo.Context) error {
 	defer file.Close()
 
 	// Remove the file
-	err_remove := os.Remove(file_body.Name())
+	/*err_remove := os.Remove(file_body.Name())
 	if err_remove != nil {
 		return c.JSON(500, &helpers.ResponseString{
 			Error: helpers.ErrorStructure{
@@ -105,7 +105,7 @@ func Add(c echo.Context) error {
 				Detail:   "Error eliminando archivo",
 			},
 			Data: ""})
-	}
+	}*/
 
 	//Storage the Documento Historia
 	new_documento_historia := models.NewDocumentosHistoria(uuid.New().String(), id_historia_clinica, url_generated)

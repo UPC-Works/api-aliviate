@@ -63,7 +63,7 @@ func HandlerRouters() {
 	router_historia := version_1.Group("/historia_clinica", middleware_api.Auth)
 	router_historia.POST("", historia_clinica_service.Add)
 	router_historia.GET("", historia_clinica_service.GetAll)
-	router_historia.GET("/modificaciones", historia_clinica_service.GetAll)
+	router_historia.GET("/modificaciones", historia_clinica_service.GetAllHistorial)
 	router_historia.PUT("", historia_clinica_service.Update)
 	router_historia.GET("/:id_historia_clinica", historia_clinica_service.GetOne)
 
@@ -85,7 +85,7 @@ func HandlerRouters() {
 	router_analisis_laboratorio.GET("/list-analisis", analisis_laboratorio_codigo_service.GetAll)
 	router_analisis_laboratorio.GET("/list-analisis-campo", analisis_laboratorio_campo_service.GetAll)
 	router_analisis_laboratorio.POST("/register-analisis-historia", analisis_historia_service.Add)
-	router_analisis_laboratorio.POST("/list-analisis-historia", analisis_historia_service.GetAll)
+	router_analisis_laboratorio.GET("/list-analisis-historia", analisis_historia_service.GetAll)
 
 	//V1 - DOCUMENTOS
 	router_documentos := version_1.Group("/documentos", middleware_api.Auth)

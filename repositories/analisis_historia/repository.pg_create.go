@@ -25,8 +25,8 @@ func Pg_Create(input_analisis_historias []*models.AnalisisHistoria) error {
 
 	db := configs.Conn_Pg_DB()
 
-	query := `INSERT INTO AnalisisHistoria (id_historia_clinica,id_analisis_campo,valor) VALUES (select * from 
-		unnest($1::VARCHAR(50)[],$2::serial[], $3::decimal(10,2)[]))`
+	query := `INSERT INTO AnalisisHistoria (id_historia_clinica,id_analisis_campo,valor) (select * from 
+		unnest($1::VARCHAR(50)[],$2::int[], $3::decimal(10,2)[]))`
 	_, err_query := db.Exec(ctx, query, id_historia_clinica_pg, id_analisis_campo_pg, valor_pg)
 
 	if err_query != nil {
