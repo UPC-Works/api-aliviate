@@ -29,6 +29,18 @@ services:
       - POSTGRES_USER=postgresc16
       - POSTGRES_PASSWORD=as23g253gg..H3453BFJ&&....AS5g234g23DFfsdFfErg234g
       - POSTGRES_DB=postgresc16
+  pgadmin:
+    restart: always
+    image: "dpage/pgadmin4"
+    networks:
+      - backend
+    ports:
+      - "6520:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: adminxv6@adminxv6.com
+      PGADMIN_DEFAULT_PASSWORD: 23rF46fHRf445GYRc8j3
+    depends_on:
+      - postgres
   redis:
     container_name: redis_db
     restart: always
