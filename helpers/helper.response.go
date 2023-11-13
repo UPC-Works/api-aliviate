@@ -92,3 +92,9 @@ type ResponseListHistorialCambios struct {
 	Error  ErrorStructure                   `json:"error"`
 	Data   []models.ModificacionesHistorias `json:"data"`
 }
+
+type ResponseListEnfermedadPrediccion struct {
+	Status int                           `json:"status,omitempty"`
+	Error  ErrorStructure                `json:"error"`
+	Data   []models.EnfermedadPrediccion `json:"data"`
+}

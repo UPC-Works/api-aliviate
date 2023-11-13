@@ -18,6 +18,7 @@ import (
 	consulta_service "github.com/UPC-Works/api-aliviate/services/consulta"
 	documento_historia_service "github.com/UPC-Works/api-aliviate/services/documento_historia"
 	establecimiento_service "github.com/UPC-Works/api-aliviate/services/establecimiento"
+	estadistica_service "github.com/UPC-Works/api-aliviate/services/estadistica"
 	historia_clinica_service "github.com/UPC-Works/api-aliviate/services/historia_clinica"
 	medico_service "github.com/UPC-Works/api-aliviate/services/medico"
 	paciente_service "github.com/UPC-Works/api-aliviate/services/paciente"
@@ -91,6 +92,10 @@ func HandlerRouters() {
 	router_documentos := version_1.Group("/documentos", middleware_api.Auth)
 	router_documentos.POST("/:idhistoriaclinica", documento_historia_service.Add)
 	router_documentos.GET("", documento_historia_service.GetAll)
+
+	//V1 - ESTADISTICAS
+	router_estadistica := version_1.Group("/estadistica", middleware_api.Auth)
+	router_estadistica.POST("/predicciones-enfermedades", estadistica_service.GetEnfermedadProbabilidad)
 
 	//V1 - PREDICCION
 	router_prediccion := version_1.Group("/prediccion")
