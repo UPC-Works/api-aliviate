@@ -95,7 +95,7 @@ func HandlerRouters() {
 
 	//V1 - ESTADISTICAS
 	router_estadistica := version_1.Group("/estadistica", middleware_api.Auth)
-	router_estadistica.POST("/predicciones-enfermedades", estadistica_service.GetEnfermedadProbabilidad)
+	router_estadistica.GET("/predicciones-enfermedades", estadistica_service.GetEnfermedadProbabilidad)
 
 	//V1 - PREDICCION
 	router_prediccion := version_1.Group("/prediccion")
