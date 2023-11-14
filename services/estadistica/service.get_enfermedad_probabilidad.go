@@ -10,8 +10,8 @@ import (
 
 func GetEnfermedadProbabilidad(c echo.Context) error {
 
-	//Get the filters from the client
-	idMedico := c.Request().URL.Query().Get("idMedico")
+	//Get the id form the Middleware
+	idMedico := c.Get("id").(string)
 
 	//Get the all probabilidad_enfermedades
 	list_probabilidad_enfermedades, error_find_probabilidad_enfermedades := diagnostico_ia_repository.Pg_Find_EnfermedadesPredicciones(idMedico)
