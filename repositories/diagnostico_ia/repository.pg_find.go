@@ -3,6 +3,7 @@ package diagnostico_ia
 import (
 	"context"
 	"fmt"
+	"log"
 	"strings"
 	"time"
 
@@ -50,6 +51,9 @@ func Pg_Find_EnfermedadesPredicciones(input_id_medico string) ([]models.Enfermed
 		q += strings.Join(clausulas, " AND ")
 
 	}
+
+	log.Println("QUERY QUE SE ENVIA-------->", q+" GROUP BY dia.enfermedad  ORDER BY probabilidad DESC")
+
 	rows, error_find := db.Query(ctx, q+" GROUP BY dia.enfermedad  ORDER BY probabilidad DESC")
 	if error_find != nil {
 		return oListEnfermedadPrediccion, error_find

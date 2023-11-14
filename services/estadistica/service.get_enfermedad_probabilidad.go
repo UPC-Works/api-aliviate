@@ -1,6 +1,8 @@
 package estadistica
 
 import (
+	"log"
+
 	"github.com/labstack/echo/v4"
 
 	helpers "github.com/UPC-Works/api-aliviate/helpers"
@@ -12,6 +14,8 @@ func GetEnfermedadProbabilidad(c echo.Context) error {
 
 	//Get the id form the Middleware
 	idMedico := c.Get("id").(string)
+
+	log.Println("-------------->", idMedico)
 
 	//Get the all probabilidad_enfermedades
 	list_probabilidad_enfermedades, error_find_probabilidad_enfermedades := diagnostico_ia_repository.Pg_Find_EnfermedadesPredicciones(idMedico)
