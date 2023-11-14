@@ -33,7 +33,7 @@ services:
     restart: always
     image: "dpage/pgadmin4"
     networks:
-      - backend
+      - traefik_net
     ports:
       - "6520:80"
     environment:
