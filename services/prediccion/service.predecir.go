@@ -469,7 +469,7 @@ func Predecir(c echo.Context) error {
 		fmt.Println("Archivo eliminado exitosamente.")
 	}
 
-	predicciones := []models.PrediccionEnfermedad{
+	predicciones := []models.PrediccionEnfermedadShow{
 		{
 			Enfermedad:   "Resfriado",
 			Probabilidad: 0.75,

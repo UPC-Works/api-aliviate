@@ -58,9 +58,9 @@ type ResponseHistoriaClinica struct {
 }
 
 type ResponsePrediccion struct {
-	Status int                           `json:"status,omitempty"`
-	Error  ErrorStructure                `json:"error"`
-	Data   []models.PrediccionEnfermedad `json:"data"`
+	Status int                               `json:"status,omitempty"`
+	Error  ErrorStructure                    `json:"error"`
+	Data   []models.PrediccionEnfermedadShow `json:"data"`
 }
 
 type ResponseListAnalisisLaboratorioCodigo struct {
