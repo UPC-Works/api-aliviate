@@ -2,6 +2,7 @@ package prediccion
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"strings"
 
@@ -413,25 +414,25 @@ func Predecir(c echo.Context) error {
 	cell = dataRow.AddCell()
 	cell.Value = map[bool]string{true: "Si", false: "No"}[historia_clinica.TieneHabDrogas]
 	cell = dataRow.AddCell()
-	//cell.SetFloat(float64(analisis_laboratorio.Hematrocito))
+	cell.SetFloat(float64(0))
 	cell = dataRow.AddCell()
-	//cell.SetFloat(float64(analisis_laboratorio.Hemoglobina))
+	cell.SetFloat(float64(0))
 	cell = dataRow.AddCell()
-	//cell.SetFloat(float64(analisis_laboratorio.Colesterol))
+	cell.SetFloat(float64(0))
 	cell = dataRow.AddCell()
-	//cell.SetFloat(float64(analisis_laboratorio.Trigliceridos))
+	cell.SetFloat(float64(0))
 	cell = dataRow.AddCell()
-	//cell.SetFloat(float64(analisis_laboratorio.ColesterolHdl))
+	cell.SetFloat(float64(0))
 	cell = dataRow.AddCell()
-	//cell.SetFloat(float64(analisis_laboratorio.ColesterolLdl))
+	cell.SetFloat(float64(0))
 	cell = dataRow.AddCell()
-	//cell.SetFloat(float64(analisis_laboratorio.ColesterolVldl))
+	cell.SetFloat(float64(0))
 	cell = dataRow.AddCell()
-	//cell.SetFloat(float64(analisis_laboratorio.Riesgo1))
+	cell.SetFloat(float64(0))
 	cell = dataRow.AddCell()
-	//cell.SetFloat(float64(analisis_laboratorio.Riesgo2))
+	cell.SetFloat(float64(0))
 	cell = dataRow.AddCell()
-	//cell.SetFloat(float64(analisis_laboratorio.Glucosa))
+	cell.SetFloat(float64(0))
 	cell = dataRow.AddCell()
 	cell.SetFloat(float64(input_consulta.PA))
 	cell = dataRow.AddCell()
@@ -459,7 +460,8 @@ func Predecir(c echo.Context) error {
 	}
 
 	//Enviar a predecir
-	//respuesta_prediccion := EnviarArchivo(nombre_archivo)
+	respuesta_prediccion := EnviarArchivo(nombre_archivo)
+	log.Println("")
 
 	//Eliminar archivo
 	err_eliminar := os.Remove(nombre_archivo + ".xlsx")
@@ -469,7 +471,7 @@ func Predecir(c echo.Context) error {
 		fmt.Println("Archivo eliminado exitosamente.")
 	}
 
-	predicciones := []models.PrediccionEnfermedadShow{
+	/*predicciones := []models.PrediccionEnfermedadShow{
 		{
 			Enfermedad:   "Resfriado",
 			Probabilidad: 0.75,
@@ -482,7 +484,7 @@ func Predecir(c echo.Context) error {
 			Enfermedad:   "Dolor de garganta",
 			Probabilidad: 0.60,
 		},
-	}
+	}*/
 
 	//OK
 	return c.JSON(200, &helpers.ResponsePrediccion{
@@ -490,5 +492,5 @@ func Predecir(c echo.Context) error {
 			HasError: false,
 			Detail:   "",
 		},
-		Data: predicciones})
+		Data: respuesta_prediccion})
 }
