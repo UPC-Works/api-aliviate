@@ -12,13 +12,21 @@ import (
 
 func GetEnfermedadProbabilidad(c echo.Context) error {
 
+	var id_medico string
+
 	//Get the id form the Middleware
 	idMedico := c.Get("id").(string)
+	//Get the id form the Middleware
+	rol := c.Get("rol").(int)
+
+	if rol == 2 {
+		id_medico = idMedico
+	}
 
 	log.Println("-------------->", idMedico)
 
 	//Get the all probabilidad_enfermedades
-	list_probabilidad_enfermedades, error_find_probabilidad_enfermedades := diagnostico_ia_repository.Pg_Find_EnfermedadesPredicciones(idMedico)
+	list_probabilidad_enfermedades, error_find_probabilidad_enfermedades := diagnostico_ia_repository.Pg_Find_EnfermedadesPredicciones(id_medico)
 	if error_find_probabilidad_enfermedades != nil {
 		return c.JSON(500, &helpers.ResponseListEnfermedadPrediccion{
 			Error: helpers.ErrorStructure{
