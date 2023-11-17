@@ -43,7 +43,7 @@ func Add(c echo.Context) error {
 
 	//Generate the temp_file_url
 	id_documento := uuid.New().String()
-	temp_file_url := "s3-aliviate/" + "/" + id_historia_clinica + id_documento + ".pdf"
+	temp_file_url := "s3-aliviate" + "/" + id_historia_clinica + id_documento + ".pdf"
 
 	// Convert multipart.FileHeader to *os.File
 	tmp_file, err := os.Create(file_header.Filename)
